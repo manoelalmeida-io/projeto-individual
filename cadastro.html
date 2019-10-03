@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/cadastro.css">
-    <title>Fazer login</title>
+    <title>Cadastre-se</title>
 </head>
 <body>
     <div class="container">
         <div class="content">
             <div class="form-container large">
                 <h1 class="form-title">Cadastre-se</h1>
-                <form action="" class="form">
+                <form action="" class="form" id="form" onsubmit="return enviar(event)">
 					<label class="label">Nome completo</label>
-                    <input class="input text" type="text"><br>
+                    <input class="input text" type="text" required><br>
                     <label class="label">Nome de usuário</label>
-                    <input class="input text" type="text"><br>
+                    <input class="input text" type="text" required><br>
+                    <label class="label">Email</label>
+                    <input class="input text" type="email" required>
+                    <label class="label">Confirmar email</label>
+                    <input class="input text" type="email" required>
                     <label class="label">Senha</label>
-                    <input class="input text" type="text"><br>
+                    <input class="input text" type="password" required><br>
+                    <label class="label">Confirmar senha</label>
+                    <input class="input text" type="password" required><br>
+                    <label class="label"></label>
                     <button class="input button">Entrar</button>
                 </form>
             </div>
@@ -36,3 +43,11 @@
     </div>
 </body>
 </html>
+
+<script>
+    function enviar(event) {
+        
+        event.preventDefault();
+        alert("sei lá");
+    }
+</script>

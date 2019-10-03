@@ -33,7 +33,7 @@ body {
 }
 
 .form-container.large {
-    height: 50vh;
+    height: 70vh;
     max-width: 500px;
     max-height: 400px;
 }
@@ -59,7 +59,8 @@ body {
 
 .input {
     width: 250px;
-    padding: 10px;    
+    padding: 10px;
+    margin-top: 5px;   
 }
 
 .input.text {
