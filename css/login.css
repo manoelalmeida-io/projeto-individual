@@ -38,8 +38,8 @@ body {
 }
 
 .form-container.small {
-    height: 21.5vh;
-    max-height: 175px;
+    height: 21.4vh;
+    max-height: 174px;
 }
 
 .form-title {
@@ -60,7 +60,7 @@ body {
 }
 
 .input.button {
-    background-color: crimson;
+    background-color: #023E73;
     color: white;
     border: 0;
     border-radius: 2px;

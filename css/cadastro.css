@@ -40,7 +40,7 @@ body {
 
 .form-container.small {
     height: 21.5vh;
-    max-height: 175px;
+    max-height: 100px;
 }
 
 .form-title {
@@ -67,8 +67,12 @@ body {
     box-sizing: border-box;
 }
 
+.input.text:invalid {
+    outline-color: red;
+}
+
 .input.button {
-    background-color: crimson;
+    background-color: #023E73;
     color: white;
     border: 0;
     border-radius: 2px;

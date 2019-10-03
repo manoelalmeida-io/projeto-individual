@@ -14,19 +14,18 @@
                 <h1 class="form-title">Cadastre-se</h1>
                 <form action="" class="form" id="form" onsubmit="return enviar(event)">
 					<label class="label">Nome completo</label>
-                    <input class="input text" type="text" required><br>
-                    <label class="label">Nome de usuário</label>
-                    <input class="input text" type="text" required><br>
+                    <input id="nome" class="input text" type="text" required><br>
                     <label class="label">Email</label>
-                    <input class="input text" type="email" required>
+                    <input id="email" class="input text" type="email" required>
                     <label class="label">Confirmar email</label>
-                    <input class="input text" type="email" required>
+                    <input id="confirmaEmail" class="input text" type="email" required>
                     <label class="label">Senha</label>
-                    <input class="input text" type="password" required><br>
+                    <input id="senha" class="input text" type="password" required><br>
                     <label class="label">Confirmar senha</label>
-                    <input class="input text" type="password" required><br>
+                    <input id="confirmaSenha" class="input text" type="password" required><br>
                     <label class="label"></label>
-                    <button class="input button">Entrar</button>
+                    <button class="input button">Entrar</button><br><br>
+                    <div id="ver_mensagem" style="text-align: right"></div>
                 </form>
             </div>
             <div>
@@ -48,6 +47,40 @@
     function enviar(event) {
         
         event.preventDefault();
-        alert("sei lá");
+        
+        var vNome = nome.value;
+        var vEmail = email.value;
+        var vConfirmaEmail = confirmaEmail.value;
+        var vSenha = senha.value;
+        var vConfirmaSenha = confirmaSenha.value;
+
+        var emailCorresponde = false;
+        var senhaCorresponde = false;
+
+        if (vEmail == vConfirmaEmail) {
+
+            emailCorresponde = true;
+        }
+        else {
+
+            ver_mensagem.style.color = 'crimson';
+            ver_mensagem.innerHTML = '*Emails não correspondem';
+        }
+
+        if (vSenha == vConfirmaSenha) {
+
+            senhaCorresponde = true;
+        }
+        else {
+
+            ver_mensagem.style.color = 'crimson';
+            ver_mensagem.innerHTML = '*Senhas não correspondem';
+        }
+
+        if (emailCorresponde && senhaCorresponde) {
+
+            ver_mensagem.style.color = 'black';
+            ver_mensagem.innerHTML = 'Usuário cadastrado com sucesso';
+        }
     }
 </script>
