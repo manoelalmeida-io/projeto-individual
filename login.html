@@ -9,24 +9,19 @@
 </head>
 <body>
     <div class="container">
-        <div class="content">
-            <div class="form-container large">
+        <div class="form-container">
+            <div id="login">
                 <h1 class="form-title">Entrar</h1>
                 <form action="" class="form">
-                    <input class="input text" type="text" placeholder="Usuário" required><br>
-                    <input class="input text" type="password" placeholder="Senha" required><br>
-                    <button class="input button">Entrar</button>
+                    <label for="">Usuário</label> 
+                    <input class="input text" type="text" placeholder="Usuário" required><br><br>
+                    <label for="">Senha</label>
+                    <input class="input text" type="password" placeholder="Senha" required><br><br>
+                    Não possui uma conta? <a class="link" href="#">Cadastre-se</a>
+                    <div class="button-container">
+                        <button class="input button">Entrar</button>
+                    </div>
                 </form>
-            </div>
-            <div>
-                <div class="form-container small">
-                    <h2>Não possui uma conta?</h2>
-                    <button class="input button">Cadastre-se</button>
-                </div>
-                <div class="form-container small">
-                    <h2>Mudou de ideia?</h2>
-                    <button class="input button">Voltar para início</button>
-                </div>
             </div>
         </div>
     </div>
