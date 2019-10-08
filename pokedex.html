@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/pokedex.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-section">
+                <a href="index.html" class="navbar-link"><img src="logo.png" alt="logo"></a>
+                <a href="" class="navbar-link">Artigos</a>
+                <a href="" class="navbar-link">Notícias</a>
+                <a href="" class="navbar-link active">Pokedéx</a>
+                <a href="" class="navbar-link">Seu time</a>
+            </div>
+            <div class="navbar-section">
+                <button class="button primary">Entrar</button>
+                <button class="button secondary">Cadastre-se</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <h1 class="title">Pokedex</h1>
+            <div class="filter">
+                <label for="">Buscar:</label>
+                <input type="text">
+                <label for="type">Tipo:</label>
+                <select id="type">
+                    <option value="">Todos</option>
+                    <option value="">Grama</option>
+                </select>
+            </div>
+            <div class="list">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Total</th>
+                        <th>HP</th>
+                        <th>Ataque</th>
+                        <th>Defesa</th>
+                        <th>Ataque especial</th>
+                        <th>Defesa especial</th>
+                        <th>Velocidade</th>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>Bulbasaur</td>
+                        <td>Grama/Veneno</td>
+                        <td>318</td>
+                        <td>45</td>
+                        <td>49</td>
+                        <td>49</td>
+                        <td>65</td>
+                        <td>65</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Ivysaur</td>
+                        <td>Grama/Veneno</td>
+                        <td>405</td>
+                        <td>60</td>
+                        <td>62</td>
+                        <td>63</td>
+                        <td>80</td>
+                        <td>80</td>
+                        <td>60</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

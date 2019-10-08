@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Cabin', sans-serif;
+}
+
+.navbar {
+    background-color: #212121;
+    padding: 10px;
+}
+
+.navbar-link {
+    color: #9E9E9E;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.navbar-link.active {
+    color: #FFFFFF;
+    background-color: #EE222A;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.button {
+    padding: 12px;
+    border: 0;
+    border-radius: 3px;
+}
+
+.button.primary {
+    color: #FFFFFF;
+    background-color: #EE222A;
+}
+
+.button.secondary {
+    background-color: #FFFFFF;
+}
+
+.container {
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    margin: 0 8px;
+}

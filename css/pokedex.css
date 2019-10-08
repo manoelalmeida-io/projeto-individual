@@ -1,0 +1,27 @@
+.title {
+    margin-top: 50px;
+}
+
+.filter {
+    
+}
+
+.list {
+    margin-top: 50px;
+    overflow-x: auto;
+}
+
+.list table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.list th {
+    padding: 10px 8px;
+    background-color: #E0E0E0;
+}
+
+.list td {
+    padding: 16px 8px;
+}
