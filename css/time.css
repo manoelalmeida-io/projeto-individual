@@ -1,0 +1,38 @@
+.title {
+    margin-top: 50px;
+}
+
+.add-team {
+    background-color: #E0E0E0;
+    background-image: url("../img/icons/add.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    width: 100px;
+    height: 150px;
+    border-radius: 4px;
+}
+
+.create {
+    margin-top: 50px;
+}
+
+.selected-pokemons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon {
+    background-color: cornflowerblue;
+    min-width: 100px;
+    height: 150px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+}
