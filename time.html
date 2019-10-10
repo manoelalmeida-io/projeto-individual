@@ -21,8 +21,8 @@
                 <a href="#" class="navbar-link active">Seu time</a>
             </div>
             <div class="navbar-section">
-                <a href="login.html"><button class="button primary">Entrar</button></a>
-                <a href="cadastro.html"><button class="button secondary">Cadastre-se</button></a>
+                <a href="login.html#login"><button class="button primary">Entrar</button></a>
+                <a href="login.html#cadastro"><button class="button secondary">Cadastre-se</button></a>
             </div>
         </div>
     </nav>
@@ -37,60 +37,54 @@
                 <div class="selection-form">
                     <h2>Time</h2>
                     <input class="input" type="text" placeholder="Nome do time">
-                    <div class="selected-pokemons">
-                        <div class="pokemon">001</div>
-                        <div class="pokemon">002</div>
-                        <div class="pokemon">003</div>
-                        <div class="pokemon">004</div>
-                        <div class="pokemon">005</div>
-                        <div class="pokemon">006</div>
-                    </div>
+                    <div class="selected-pokemons" id="selectedPokemons"></div>
                     <button>Salvar</button>
                     <button>Cancelar</button>
                 </div>
                 <div class="pokemons">
                     <h2>Escolha seus Pokémons</h2>
                     <div class="list">
-                        <div class="pokemon">001</div>
-                        <div class="pokemon">002</div>
-                        <div class="pokemon">003</div>
-                        <div class="pokemon">004</div>
-                        <div class="pokemon">005</div>
-                        <div class="pokemon">006</div>
-                        <div class="pokemon">007</div>
-                        <div class="pokemon">008</div>
-                        <div class="pokemon">009</div>
-                        <div class="pokemon">010</div>
-                        <div class="pokemon">011</div>
-                        <div class="pokemon">012</div>
-                        <div class="pokemon">013</div>
-                        <div class="pokemon">014</div>
-                        <div class="pokemon">015</div>
-                        <div class="pokemon">016</div>
-                        <div class="pokemon">017</div>
-                        <div class="pokemon">018</div>
-                        <div class="pokemon">019</div>
-                        <div class="pokemon">020</div>
-                        <div class="pokemon">021</div>
-                        <div class="pokemon">022</div>
-                        <div class="pokemon">023</div>
-                        <div class="pokemon">024</div>
-                        <div class="pokemon">025</div>
-                        <div class="pokemon">026</div>
-                        <div class="pokemon">027</div>
-                        <div class="pokemon">028</div>
-                        <div class="pokemon">029</div>
-                        <div class="pokemon">030</div>
-                        <div class="pokemon">031</div>
-                        <div class="pokemon">032</div>
-                        <div class="pokemon">033</div>
-                        <div class="pokemon">034</div>
+                        <div class="pokemon" onclick="selecionar(this)">001</div>
+                        <div class="pokemon" onclick="selecionar(this)">002</div>
+                        <div class="pokemon" onclick="selecionar(this)">003</div>
+                        <div class="pokemon" onclick="selecionar(this)">004</div>
+                        <div class="pokemon" onclick="selecionar(this)">005</div>
+                        <div class="pokemon" onclick="selecionar(this)">006</div>
+                        <div class="pokemon" onclick="selecionar(this)">007</div>
+                        <div class="pokemon" onclick="selecionar(this)">008</div>
+                        <div class="pokemon" onclick="selecionar(this)">009</div>
+                        <div class="pokemon" onclick="selecionar(this)">010</div>
+                        <div class="pokemon" onclick="selecionar(this)">011</div>
+                        <div class="pokemon" onclick="selecionar(this)">012</div>
+                        <div class="pokemon" onclick="selecionar(this)">013</div>
+                        <div class="pokemon" onclick="selecionar(this)">014</div>
+                        <div class="pokemon" onclick="selecionar(this)">015</div>
+                        <div class="pokemon" onclick="selecionar(this)">016</div>
+                        <div class="pokemon" onclick="selecionar(this)">017</div>
+                        <div class="pokemon" onclick="selecionar(this)">018</div>
+                        <div class="pokemon" onclick="selecionar(this)">019</div>
+                        <div class="pokemon" onclick="selecionar(this)">020</div>
+                        <div class="pokemon" onclick="selecionar(this)">021</div>
+                        <div class="pokemon" onclick="selecionar(this)">022</div>
+                        <div class="pokemon" onclick="selecionar(this)">023</div>
+                        <div class="pokemon" onclick="selecionar(this)">024</div>
+                        <div class="pokemon" onclick="selecionar(this)">025</div>
+                        <div class="pokemon" onclick="selecionar(this)">026</div>
+                        <div class="pokemon" onclick="selecionar(this)">027</div>
+                        <div class="pokemon" onclick="selecionar(this)">028</div>
+                        <div class="pokemon" onclick="selecionar(this)">029</div>
+                        <div class="pokemon" onclick="selecionar(this)">030</div>
+                        <div class="pokemon" onclick="selecionar(this)">031</div>
+                        <div class="pokemon" onclick="selecionar(this)">032</div>
+                        <div class="pokemon" onclick="selecionar(this)">033</div>
+                        <div class="pokemon" onclick="selecionar(this)">034</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <br><br>
+    <script src="js/time.js"></script>
 </body>
 
 </html>

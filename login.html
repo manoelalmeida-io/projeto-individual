@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,35 @@
     <link rel="stylesheet" href="css/login.css">
     <title>Fazer login</title>
 </head>
+
 <body>
     <div class="container">
         <div class="form-container">
-            <div id="login">
+            <div id="div_login">
                 <h2>Pokéstop</h2>
                 <h1 class="form-title">Entrar</h1>
                 <form action="" class="form">
-                    <label for="">Usuário</label> 
+                    <label for="">Email</label>
                     <input class="input text" type="text" placeholder="Usuário" required><br><br>
                     <label for="">Senha</label>
                     <input class="input text" type="password" placeholder="Senha" required><br><br>
-                    Não possui uma conta? <a class="link" href="#">Cadastre-se</a>
+                    Não possui uma conta? <a class="link" href="#cadastro" onclick="cadastro()">Cadastre-se</a>
+                    <div class="button-container">
+                        <button class="input button">Entrar</button>
+                    </div>
+                </form>
+            </div>
+            <div id="div_cadastro">
+                <h2>Pokéstop</h2>
+                <h1 class="form-title">Cadastre-se</h1>
+                <form action="" class="form">
+                    <label for="">Nome</label>
+                    <input class="input text" type="text" placeholder="Nome" required><br><br>
+                    <label for="">Email</label>
+                    <input class="input text" type="text" placeholder="Usuário" required><br><br>
+                    <label for="">Senha</label>
+                    <input class="input text" type="password" placeholder="Senha" required><br><br>
+                    Já possui uma conta? <a class="link" href="#login" onclick="login()">Fazer login</a>
                     <div class="button-container">
                         <button class="input button">Entrar</button>
                     </div>
@@ -26,5 +44,7 @@
             </div>
         </div>
     </div>
+    <script src="js/login.js"></script>
 </body>
+
 </html>
