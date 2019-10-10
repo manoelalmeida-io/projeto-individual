@@ -30,6 +30,9 @@
 
 .pokemon {
     background-color: cornflowerblue;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     min-width: 100px;
     height: 150px;
     margin-right: 16px;
