@@ -49,6 +49,11 @@ function remover(e) {
     selectedPokemons.removeChild(e);
 }
 
+function novo() {
+    
+    teamForm.style.display = 'block';
+}
+
 function fixarCasas(numero) {
 
     if (numero < 10) {

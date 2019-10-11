@@ -30,15 +30,16 @@
             <h1 class="title">Seus times</h1>
             <div class="teams">
                 <div class="team"></div>
-                <div class="add-team"></div>
+                <div onclick="novo()" class="add-team"></div>
             </div>
-            <div class="create">
+            <div class="create" id="teamForm">
                 <div class="selection-form">
                     <h2>Time</h2>
-                    <input class="input" type="text" placeholder="Nome do time">
+                    <label for="">Nome:</label><br>
+                    <input class="input" type="text">
                     <div class="selected-pokemons" id="selectedPokemons"></div>
-                    <button>Salvar</button>
-                    <button>Cancelar</button>
+                    <button class="button primary">Salvar</button>
+                    <button class="button secondary">Cancelar</button>
                 </div>
                 <div class="pokemons">
                     <h2>Escolha seus Pokémons</h2>

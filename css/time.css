@@ -44,3 +44,7 @@
 .pokemon.selected {
     background-color: #ef9a9a;
 }
+
+#teamForm {
+    display: none;
+}
