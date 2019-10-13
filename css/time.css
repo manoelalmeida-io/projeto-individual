@@ -2,15 +2,48 @@
     margin-top: 50px;
 }
 
+.teams {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    height: 150px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16), 0 1px 2px 0 rgba(0,0,0,0.12);
+}
+
+.team-pokemon {
+    width: 50px;
+    height: 100%;
+    background-color: #E0E0E0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 300%;
+    transition-duration: 250ms;
+}
+
+.team-pokemon:hover {
+    width: 160px;
+    height: 110%;
+    background-color: #212121;
+    background-size: 100%;
+    transition-duration: 250ms;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16), 0 1px 2px 0 rgba(0,0,0,0.12);
+}
+
 .add-team {
     background-color: #E0E0E0;
     background-image: url("../img/icons/add.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 50%;
-    width: 100px;
+    min-width: 100px;
     height: 150px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .create {
@@ -32,17 +65,28 @@
     background-color: #E0E0E0;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-position: center;
-    min-width: 100px;
+    background-position-x: center;
+    background-position-y: 80%;
+    min-width: 130px;
     height: 150px;
     margin-left: 8px;
     margin-right: 8px;
     margin-bottom: 16px;
-    border-radius: 4px;
+    padding: 4px;
+    font-weight: bold;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16), 0 1px 2px 0 rgba(0,0,0,0.12);
+    transition-duration: 100ms;
+}
+
+.pokemon:hover {
+    background-position-y: 40%;
+    color: #EE222A;
+    transition-duration: 250ms;
 }
 
 .pokemon.selected {
-    background-color: #ef9a9a;
+    background-color: #212121;
+    color: white;
 }
 
 #teamForm {

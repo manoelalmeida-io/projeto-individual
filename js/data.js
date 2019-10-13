@@ -42,5 +42,12 @@ var data = {
             "email": "a@gmail.com",
             "senha": "1234"
         }
+    ],
+    "times": [
+        {
+            "id": 1,
+            "nome": "Meu time 1",
+            "pokémons": [ 1, 2, 3, 4, 5, 6 ]
+        }
     ]
 }

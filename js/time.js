@@ -1,5 +1,43 @@
+var times = data.times;
 var pokemons = document.getElementsByClassName("pokemon");
 var contador = 0;
+
+while (contador < times.length) {
+
+    var posicaoPokemon = 0;
+    var numeroPokemons = times[contador].pokémons.length; 
+
+    var time = '<div class="team">';
+
+    while (posicaoPokemon < numeroPokemons) {
+        
+        time += `<div idpokemon="${times[contador].pokémons[posicaoPokemon]}" class="team-pokemon"></div>`;
+        posicaoPokemon++;
+    }
+
+    time += '</div>';
+    teams.innerHTML += time;
+
+    contador++;
+}
+
+contador = 0;
+
+var timePokemons = document.getElementsByClassName("team-pokemon");
+
+while (contador < timePokemons.length) {
+    
+    var pokemon = timePokemons[contador];
+
+    var id = pokemon.getAttribute('idpokemon');
+    pokemon.style.backgroundImage = `url("img/pokemons/${fixarCasas(id)}.png")`;
+
+    contador++;
+}
+
+teams.innerHTML += '<div onclick="novo()" class="add-team"></div>';
+
+contador = 0;
 
 while (contador < 151) {
 
@@ -40,7 +78,7 @@ function remover(e) {
     e.setAttribute('idpokemon', '');
 
     // query selector seleciona o pokemon com o atributo idpokemon correspondente
-    var pokemon = document.querySelector(`[idpokemon='${id}']`);
+    var pokemon = document.querySelector(`.list [idpokemon='${id}']`);
 
     // remove a classe selected para que o pokémon apareça como ausente na lista de seleção
     pokemon.classList.remove('selected');
