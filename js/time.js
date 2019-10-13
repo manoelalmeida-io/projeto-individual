@@ -78,7 +78,7 @@ function remover(e) {
     e.setAttribute('idpokemon', '');
 
     // query selector seleciona o pokemon com o atributo idpokemon correspondente
-    var pokemon = document.querySelector(`.list [idpokemon='${id}']`);
+    var pokemon = document.querySelector(`.selected-pokemons [idpokemon='${id}'], .list [idpokemon='${id}']`);
 
     // remove a classe selected para que o pokémon apareça como ausente na lista de seleção
     pokemon.classList.remove('selected');
