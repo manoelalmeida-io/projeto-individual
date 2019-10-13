@@ -21,3 +21,11 @@
 .list td {
     padding: 16px 8px;
 }
+
+.type {
+    color: white;
+    background-color: cornflowerblue;
+    margin-right: 4px;
+    padding: 4px 8px;
+    border-radius: 16px;
+}

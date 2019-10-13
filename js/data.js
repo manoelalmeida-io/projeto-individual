@@ -3,7 +3,7 @@ var data = {
         {
             "id": 1,
             "nome": "Bulbasaur",
-            "tipo": [ "Grama", "Veneno" ],
+            "tipo": [ "Planta", "Veneno" ],
             "hp": 45,
             "ataque": 49,
             "defesa": 49,
@@ -14,13 +14,35 @@ var data = {
         {
             "id": 2,
             "nome": "Ivysaur",
-            "tipo": [ "Grama", "Veneno" ],
+            "tipo": [ "Planta", "Veneno" ],
             "hp": 60,
             "ataque": 62,
             "defesa": 63,
             "ataqueEsp": 80,
             "defesaEsp": 80,
             "velocidade": 60
+        },
+        {
+            "id": 3,
+            "nome": "Venusaur",
+            "tipo": [ "Planta", "Veneno" ],
+            "hp": 80,
+            "ataque": 82,
+            "defesa": 83,
+            "ataqueEsp": 100,
+            "defesaEsp": 100,
+            "velocidade": 80
+        },
+        {
+            "id": 4,
+            "nome": "Charmander",
+            "tipo": [ "Fogo" ],
+            "hp": 39,
+            "ataque": 52,
+            "defesa": 43,
+            "ataqueEsp": 60,
+            "defesaEsp": 50,
+            "velocidade": 65
         }
     ],
     "posts": [
