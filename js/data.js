@@ -69,7 +69,7 @@ var data = {
         {
             "id": 1,
             "nome": "Meu time 1",
-            "pokémons": [ 1, 2, 3, 4, 5, 6 ]
+            "pokemons": [ 1, 2, 3, 4, 5, 6 ]
         }
     ]
 }

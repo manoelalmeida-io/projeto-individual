@@ -5,17 +5,24 @@ var contador = 0;
 while (contador < times.length) {
 
     var posicaoPokemon = 0;
-    var numeroPokemons = times[contador].pokémons.length; 
+    var numeroPokemons = times[contador].pokemons.length; 
 
     var time = '<div class="team">';
+    time += '<div class="team-pokemons">';
 
     while (posicaoPokemon < numeroPokemons) {
         
-        time += `<div idpokemon="${times[contador].pokémons[posicaoPokemon]}" class="team-pokemon"></div>`;
+        time += `<div idpokemon="${times[contador].pokemons[posicaoPokemon]}" class="team-pokemon"></div>`;
         posicaoPokemon++;
     }
 
     time += '</div>';
+    time += '<div class="team-info">';
+    time += times[contador].nome;
+    time += '<div class="controls">'
+    time += '<img src="img/icons/edit.svg">';
+    time += '<img src="img/icons/delete.svg">';
+    time += '</div></div></div>';
     teams.innerHTML += time;
 
     contador++;
