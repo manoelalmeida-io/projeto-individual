@@ -43,6 +43,28 @@ var data = {
             "ataqueEsp": 60,
             "defesaEsp": 50,
             "velocidade": 65
+        },
+        {
+            "id": 5,
+            "nome": "Charmeleon",
+            "tipo": [ "Fogo" ],
+            "hp": 58,
+            "ataque": 64,
+            "defesa": 58,
+            "ataqueEsp": 80,
+            "defesaEsp": 65,
+            "velocidade": 80
+        },
+        {
+            "id": 6,
+            "nome": "Charizard",
+            "tipo": [ "Fogo" ],
+            "hp": 78,
+            "ataque": 84,
+            "defesa": 78,
+            "ataqueEsp": 109,
+            "defesaEsp": 85,
+            "velocidade": 100
         }
     ],
     "posts": [

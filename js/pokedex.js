@@ -15,7 +15,7 @@ while (contador < pokemons.length) {
     var total = hp + atk + def + spAtk + spDef + vel; 
 
     var row = '<tr>';
-    row += `<td>${fixarCasas(id)}</td>`;
+    row += `<td class="id"><img src="img/pokemons/${fixarCasas(id)}.png">${fixarCasas(id)}</td>`;
     row += `<td>${nome}</td>`;
     row += `<td><span class="type">${tipo[0]}</span><span class="type">${tipo[1]}</span></td>`;
     row += `<td><b>${total}</b></td>`;
