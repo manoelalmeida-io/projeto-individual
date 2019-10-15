@@ -1,0 +1,33 @@
+.title {
+    margin-top: 50px;
+}
+
+.pokemons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon {
+    width: 45%;
+    padding: 16px;
+}
+
+.attacker {
+    background-color: crimson;
+}
+
+.defender {
+    background-color: cornflowerblue;
+}
+
+.hp {
+    display: flex;
+    align-items: center;
+}
+
+#hp {
+    width: 300px;
+    height: 25px;
+    background-color: darkgreen;
+    margin-left: 8px;
+}

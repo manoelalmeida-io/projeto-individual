@@ -11,7 +11,7 @@ while (contador < movimentos.length) {
     var precisao = movimentos[contador].precisao;
 
     var row = '<tr>';
-    row += `<td>${fixarCasas(id)}</td>`;
+    row += `<td>${id}</td>`;
     row += `<td>${nome}</td>`;
     row += `<td>${tipo}</td>`;
     row += `<td>${categoria}</td>`;
