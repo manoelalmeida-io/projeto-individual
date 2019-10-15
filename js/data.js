@@ -67,16 +67,22 @@ var data = {
             "velocidade": 100
         }
     ],
-    "posts": [
+    "movimentos": [
         {
             "id": 1,
-            "titulo": "Exemplo de post",
-            "data": 1570813549,
-            "paragrafos": [
-                "Este é o primeiro parágrafo",
-                "Este é o segundo parágrafo"
-            ],
-            "autor": "Alguém aí"
+            "nome": "Pound",
+            "tipo": "Normal",
+            "categoria": "Físico",
+            "poder": 40,
+            "precisao": 100
+        },
+        {
+            "id": 2,
+            "nome": "Karate Chop",
+            "tipo": "Lutador",
+            "categoria": "Físico",
+            "poder": 50,
+            "precisao": 100
         }
     ],
     "usuarios": [

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pokédex | Pokéstop</title>
+    <title>Movimentos | Pokéstop</title>
     <link rel="stylesheet" href="css/estilo.css">
-    <link rel="stylesheet" href="css/pokedex.css">
+    <link rel="stylesheet" href="css/movimentos.css">
 </head>
 
 <body>
@@ -16,8 +16,8 @@
             <div class="navbar-section center-itens">
                 <a href="index.html" class="navbar-link"><img src="img/icons/logo.png" alt="logo"></a>
                 <a href="" class="navbar-link">Calculadora</a>
-                <a href="movimentos.html" class="navbar-link">Movimentos</a>
-                <a href="#" class="navbar-link active">Pokédex</a>
+                <a href="#" class="navbar-link active">Movimentos</a>
+                <a href="pokedex.html" class="navbar-link">Pokédex</a>
                 <a href="time.html" class="navbar-link">Seu time</a>
             </div>
             <div class="navbar-section">
@@ -28,7 +28,7 @@
     </nav>
     <div class="container">
         <div class="content">
-            <h1 class="title">Pokédex</h1>
+            <h1 class="title">Movimentos</h1>
             <div class="filter">
                 <label for="">Buscar:</label>
                 <input class="input" type="text">
@@ -56,18 +56,14 @@
                 </select>
             </div>
             <div class="list">
-                <table id="pokemonTable">
+                <table id="moveTable">
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
                         <th>Tipo</th>
-                        <th>Total</th>
-                        <th>HP</th>
-                        <th>Ataque</th>
-                        <th>Defesa</th>
-                        <th>Ataque especial</th>
-                        <th>Defesa especial</th>
-                        <th>Velocidade</th>
+                        <th>Categoria</th>
+                        <th>Poder</th>
+                        <th>Precisão</th>
                     </tr>
                 </table>
             </div>
@@ -75,7 +71,7 @@
     </div>
     <br><br>
     <script src="js/data.js"></script>
-    <script src="js/pokedex.js"></script>
+    <script src="js/movimentos.js"></script>
 </body>
 
 </html>
