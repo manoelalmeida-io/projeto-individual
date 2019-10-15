@@ -33,31 +33,54 @@
                 <div class="pokemon attacker">
                     <h2>Atacante</h2>
                     <label for="">Pokémon</label>
-                    <select>
-                        <option value="">Bulbasalto</option>
-                    </select><br><br>
+                    <select id="attacker"></select><br><br>
                     <label for="">Movimento</label>
-                    <select>
-                        <option value="">Pound</option>
-                    </select>
+                    <select id="move"></select><br><br>
+                    <div class="pokemon-info">
+                        <img src="img/pokemons/001.png" alt="">
+                        <div>
+                            "id": 1<br>
+                            "nome": "Bulbasaur"<br>
+                            "tipo": [ "Planta", "Veneno" ]<br>
+                            "hp": 45<br>
+                            "ataque": 49<br>
+                            "defesa": 49<br>
+                            "ataqueEsp": 65<br>
+                            "defesaEsp": 65<br>
+                            "velocidade": 45
+                        </div>
+                    </div>
                 </div>
                 <div class="pokemon defender">
                     <h2>Defensor</h2>
                     <label for="">Pokémon</label>
-                    <select>
-                        <option value="">Bulbasalto</option>
-                    </select><br><br>
+                    <select id="defender"></select><br><br>
                     <div class="hp">
                         <label for="">HP</label>
                         <div id="hp"></div>
+                    </div><br>
+                    <div class="pokemon-info">
+                        <img src="img/pokemons/001.png" alt="">
+                        <div>
+                            "id": 1<br>
+                            "nome": "Bulbasaur"<br>
+                            "tipo": [ "Planta", "Veneno" ]<br>
+                            "hp": 45<br>
+                            "ataque": 49<br>
+                            "defesa": 49<br>
+                            "ataqueEsp": 65<br>
+                            "defesaEsp": 65<br>
+                            "velocidade": 45
+                        </div>
                     </div>
                 </div>
             </div><br>
-            <button>Atacar</button>
+            <button class="button primary">Atacar</button>
         </div>
     </div>
     <br><br>
     <script src="js/data.js"></script>
+    <script src="js/calculadora.js"></script>
 </body>
 
 </html>
