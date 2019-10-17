@@ -22,21 +22,3 @@ while (contador < movimentos.length) {
     moveTable.innerHTML += row;
     contador++;
 }
-
-function fixarCasas(numero) {
-
-    if (numero < 10) {
-        
-        return "00" + numero;
-    }
-
-    if (numero >= 10 && numero < 100) {
-
-        return "0" + numero;
-    }
-
-    if (numero >= 100) {
-        
-        return "" + numero;
-    }
-}

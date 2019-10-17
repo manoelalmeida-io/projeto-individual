@@ -100,4 +100,22 @@ var data = {
             "pokemons": [ 1, 2, 3, 4, 5, 6 ]
         }
     ]
+};
+
+function fixarCasas(numero) {
+
+    if (numero < 10) {
+        
+        return "00" + numero;
+    }
+
+    if (numero >= 10 && numero < 100) {
+
+        return "0" + numero;
+    }
+
+    if (numero >= 100) {
+        
+        return "" + numero;
+    }
 }

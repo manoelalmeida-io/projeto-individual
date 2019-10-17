@@ -33,44 +33,44 @@
                 <div class="pokemon attacker">
                     <h2>Atacante</h2>
                     <label for="">Pokémon</label>
-                    <select id="attacker"></select><br><br>
+                    <select id="attacker" onchange="trocarPokemon(this)"></select><br><br>
                     <label for="">Movimento</label>
                     <select id="move"></select><br><br>
                     <div class="pokemon-info">
-                        <img src="img/pokemons/001.png" alt="">
+                        <img src="img/pokemons/001.png" alt="" id="pokemon1_img">
                         <div>
-                            "id": 1<br>
-                            "nome": "Bulbasaur"<br>
-                            "tipo": [ "Planta", "Veneno" ]<br>
-                            "hp": 45<br>
-                            "ataque": 49<br>
-                            "defesa": 49<br>
-                            "ataqueEsp": 65<br>
-                            "defesaEsp": 65<br>
-                            "velocidade": 45
+                            <b>Id:</b> <span id="pk1_id">1</span><br>
+                            <b>Nome:</b> <span id="pk1_nome">Bulbasaur</span><br>
+                            <b>Tipo:</b> <span id="pk1_tipo">Planta,Veneno</span><br>
+                            <b>HP:</b> <span id="pk1_hp">45</span><br>
+                            <b>Ataque:</b> <span id="pk1_atk">49</span><br>
+                            <b>Defesa:</b> <span id="pk1_def">49</span><br>
+                            <b>Ataque especial:</b> <span id="pk1_spAtk">65</span><br>
+                            <b>Defesa especial:</b> <span id="pk1_spDef">65</span><br>
+                            <b>Velocidade:</b> <span id="pk1_velocidade">45</span>
                         </div>
                     </div>
                 </div>
                 <div class="pokemon defender">
                     <h2>Defensor</h2>
                     <label for="">Pokémon</label>
-                    <select id="defender"></select><br><br>
+                    <select id="defender" onchange="trocarPokemon(this)"></select><br><br>
                     <div class="hp">
                         <label for="">HP</label>
                         <div id="hp"></div>
                     </div><br>
                     <div class="pokemon-info">
-                        <img src="img/pokemons/001.png" alt="">
+                        <img src="img/pokemons/001.png" alt="" id="pokemon2_img">
                         <div>
-                            "id": 1<br>
-                            "nome": "Bulbasaur"<br>
-                            "tipo": [ "Planta", "Veneno" ]<br>
-                            "hp": 45<br>
-                            "ataque": 49<br>
-                            "defesa": 49<br>
-                            "ataqueEsp": 65<br>
-                            "defesaEsp": 65<br>
-                            "velocidade": 45
+                            <b>Id:</b> <span id="pk2_id">1</span><br>
+                            <b>Nome:</b> <span id="pk2_nome">Bulbasaur</span><br>
+                            <b>Tipo:</b> <span id="pk2_tipo">Planta,Veneno</span><br>
+                            <b>HP:</b> <span id="pk2_hp">45</span><br>
+                            <b>Ataque:</b> <span id="pk2_atk">49</span><br>
+                            <b>Defesa:</b> <span id="pk2_def">49</span><br>
+                            <b>Ataque especial:</b> <span id="pk2_spAtk">65</span><br>
+                            <b>Defesa especial:</b> <span id="pk2_spDef">65</span><br>
+                            <b>Velocidade:</b> <span id="pk2_velocidade">45</span>
                         </div>
                     </div>
                 </div>
