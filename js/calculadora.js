@@ -4,7 +4,7 @@ var movimentos = data.movimentos;
 var contador = 0;
 
 while (contador < pokemons.length) {
-    
+
     var pokemon = pokemons[contador];
     var item = `<option value="${pokemon.id}">${pokemon.nome}</option>`;
 
@@ -17,7 +17,7 @@ while (contador < pokemons.length) {
 contador = 0;
 
 while (contador < movimentos.length) {
-    
+
     var movimento = movimentos[contador];
     var item = `<option value="${movimento.id}">${movimento.nome}</option>`;
 
@@ -27,8 +27,8 @@ while (contador < movimentos.length) {
 }
 
 function trocarPokemon(e) {
-   
-    var pokemonID = Number(e.value); 
+
+    var pokemonID = Number(e.value);
     var pokemon = pokemons[pokemonID - 1];
 
     if (e.id == 'attacker') {
@@ -58,5 +58,53 @@ function trocarPokemon(e) {
         pk2_velocidade.innerHTML = pokemon.velocidade;
 
         pokemon2_img.src = `img/pokemons/${fixarCasas(pokemon.id)}.png`;
+        hp.style.width = '300px';
     }
+}
+
+function ataque() {
+
+    var movimento = movimentos[Number(move.value) - 1];
+    var atacante = pokemons[Number(attacker.value) - 1];
+    var defensor = pokemons[Number(defender.value) - 1];
+
+    var lv = 100;
+
+    if (movimento.categoria == 'Físico') {
+
+        var ataque = atacante.ataque;
+        var defesa = defensor.defesa;
+    }
+    else {
+
+        var ataque = atacante.ataqueEsp;
+        var defesa = defensor.defesaEsp;
+    }
+
+    var poder = movimento.poder;
+
+    if (movimento.tipo == atacante.tipo[0] || movimento.tipo == atacante.tipo[1]) {
+        
+        var STAB = 1.5;
+    }
+    else {
+
+        var STAB = 1;
+    }
+
+    var resistencia = 1;
+    var numeroAleatorio = 85 + Math.random() * 15; // um número aleatório entre 85 e 100 
+ 
+    var dano = ((((2 * lv / 5 + 2) * ataque * poder / defesa) / 50) + 2) * STAB * resistencia * numeroAleatorio / 100;
+
+    // valor correnspondete ao dano na barra de hp
+    var porcentagemDano = dano * 100 / pokemon.hp;
+    var danoBarra = 300 - (300 * porcentagemDano / 100);
+
+    if (danoBarra < 0) {
+        
+        danoBarra = 0;
+    }
+
+    hp.style.width = `${danoBarra}px`;
 }
