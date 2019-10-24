@@ -1,0 +1,20 @@
+.content {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+
+.main {
+    width: 70%;
+}
+
+.side {
+    width: 28%;
+}
+
+.section {
+    background-color: #E0E0E0;
+    padding: 16px;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16), 0 1px 2px 0 rgba(0,0,0,0.12);
+    margin-bottom: 16px;
+}
