@@ -53,14 +53,14 @@
 .controls {
     visibility: hidden;
     opacity: 0;
-    transition-duration: 50ms;
+    transition-duration: 900ms;
 }
 
 .team-info:hover > .controls {
     visibility: visible;
     cursor: pointer;
     opacity: 0.9;
-    transition-duration: 150ms;
+    transition-duration: 900ms;
 }
 
 .add-team {

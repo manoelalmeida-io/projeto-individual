@@ -53,6 +53,7 @@ body {
     margin-top: 5px;
     border: 0px;
     border-radius: 3px;
+    outline-color: white;
 }
 
 .input.button {
@@ -64,6 +65,7 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     font-family: inherit;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .link {
