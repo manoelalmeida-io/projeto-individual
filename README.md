@@ -10,6 +10,6 @@ git clone https://github.com/manoelalmeidabandtec/projeto-individual.git
 ```
 
 Baixe as imagens dos pokémons:
-https://bandteccom-my.sharepoint.com/:f:/g/personal/manoel_almeida_bandtec_com_br/EjCG9a3e1F5PsfiQ8LDM9xYBdwV57rly5ZSHoKquXKfrVA?e=5Lx9nG
+https://drive.google.com/open?id=1vEMp-SI1LZdowlcFUfiNAbnocwVEZ7OD
 
 Coloque as imagens na pasta `img/pokemons`
