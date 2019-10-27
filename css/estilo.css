@@ -3,6 +3,7 @@
 body {
     margin: 0;
     font-family: 'Cabin', sans-serif;
+    background-color: #EEEEEE;
 }
 
 .navbar {
@@ -10,9 +11,14 @@ body {
     padding: 10px;
 }
 
+.navbar-section {
+    margin-bottom: -4px;
+}
+
 .navbar-link {
     color: #9E9E9E;
     margin-right: 15px;
+    margin-top: -2px;
     text-decoration: none;
     box-sizing: border-box;
 }
@@ -46,12 +52,6 @@ body {
     color: #FFFFFF;
     background-color: #EE222A;
     border: 2px #EE222A solid;
-}
-
-.navbar .button.secondary {
-    color: #FFFFFF;
-    background-color: transparent;
-    border: 2px #FFFFFF solid;
 }
 
 .button.secondary {

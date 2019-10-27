@@ -13,8 +13,32 @@
 }
 
 .section {
-    background-color: #E0E0E0;
+    background-color: #FFFFFF;
     padding: 16px;
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16), 0 1px 2px 0 rgba(0,0,0,0.12);
     margin-bottom: 16px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+.section .img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.twitter-color {
+    color: #FFFFFF;
+    background-color: #1DA1F2;
+}
+
+.amino-color {
+    color: #FFFFFF;
+    background-color: #870063;
+}
+
+.red {
+    color: #FFFFFF;
+    background-color: #D9042B;
 }
