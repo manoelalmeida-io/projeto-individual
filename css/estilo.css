@@ -86,6 +86,45 @@ body {
     outline: none;
 }
 
+#logo {
+    transition-duration: 250ms;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+}
+
+#logo:hover {
+    transform: translateX(5px) rotate(30deg);
+    transition-duration: 250ms;
+    cursor: pointer;
+}
+
+@keyframes roll {
+    0% {
+        transform: translateX(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateX(50px) rotate(180deg);
+    }
+    100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+}
+
+@keyframes roll2 {
+    0% {
+        transform: translateX(0px) rotate(0deg);
+    }
+    40% {
+        transform: translateX(50px) rotate(180deg);
+    }
+    80% {
+        transform: translateX(-10px) rotate(-40deg);
+    }
+    100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+}
+
 @media (max-width: 620px) {
 
     .navbar {
