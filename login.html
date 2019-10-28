@@ -20,12 +20,12 @@
                 <h1 class="form-title">Entrar</h1>
                 <form action="" class="form">
                     <label for="">Email</label>
-                    <input class="input text" type="text" placeholder="Usuário" required><br><br>
+                    <input id="login_email" class="input text" type="text" placeholder="Usuário" required><br><br>
                     <label for="">Senha</label>
-                    <input class="input text" type="password" placeholder="Senha" required><br><br>
+                    <input id="login_senha" class="input text" type="password" placeholder="Senha" required><br><br>
                     Não possui uma conta? <a class="link" href="#cadastro" onclick="cadastro()">Cadastre-se</a>
                     <div class="button-container">
-                        <button class="input button">Entrar</button>
+                        <button type="button" class="input button" onclick="entrar()">Entrar</button>
                     </div>
                 </form>
             </div>
@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+    <script src="js/data.js"></script>
     <script src="js/login.js"></script>
 </body>
 

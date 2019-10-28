@@ -28,6 +28,18 @@
     max-height: 200px;
 }
 
+.section a {
+    color: #D9042B;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.a-right {
+    display: block;
+    text-align: right;
+    margin-right: 20px;
+}
+
 .twitter-color {
     color: #FFFFFF;
     background-color: #1DA1F2;

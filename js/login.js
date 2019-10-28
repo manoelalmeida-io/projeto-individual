@@ -28,3 +28,14 @@ function login() {
     div_login.style.display = 'block';
     div_cadastro.style.display = 'none';
 }
+
+function entrar() {
+
+    if (login_email.value == data.usuarios[0].email && login_senha.value == data.usuarios[0].senha) {
+        
+        window.location.href = 'index.html';
+    }
+    else {
+        alert('Usuário ou senha incorretos');
+    }
+}
