@@ -97,6 +97,27 @@ function ataque() {
  
     var dano = ((((2 * lv / 5 + 2) * ataque * poder / defesa) / 50) + 2) * STAB * resistencia * numeroAleatorio / 100;
 
+    var multiplicador = 1;
+
+    for (var i = 0; i < defensor.tipo.length; i++) {
+
+        multiplicador *= resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[i]]];
+    }
+
+    dano *= multiplicador;
+
+    efetividade.innerHTML = '';
+
+    if (resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[0]]] > 1) {
+        
+        efetividade.innerHTML = 'É super efetivo*';
+    }
+
+    if (resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[0]]] < 1) {
+        
+        efetividade.innerHTML = 'Não é muito efetivo*';
+    }
+
     // valor correnspondete ao dano na barra de hp
     var porcentagemDano = dano * 100 / pokemon.hp;
     var danoBarra = 300 - (300 * porcentagemDano / 100);

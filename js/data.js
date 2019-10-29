@@ -83,6 +83,14 @@ var data = {
             "categoria": "Físico",
             "poder": 50,
             "precisao": 100
+        },
+        {
+            "id": 3,
+            "nome": "Ember",
+            "tipo": "Fogo",
+            "categoria": "Especial",
+            "poder": 40,
+            "precisao": 100
         }
     ],
     "usuarios": [
@@ -102,7 +110,28 @@ var data = {
     ]
 };
 
-var resistance = [
+var tipos = {
+    "Normal": 0,
+    "Fogo": 1,
+    "Água": 2,
+    "Elétrico": 3,
+    "Planta": 4,
+    "Gelo": 5,
+    "Lutador": 6,
+    "Veneno": 7,
+    "Terrestre": 8,
+    "Voador": 9,
+    "Psíquico": 10,
+    "Inseto": 11,
+    "Pedra": 12,
+    "Fantasma": 13,
+    "Dragão": 14,
+    "Escuridão": 15,
+    "Metálico": 16,
+    "Fada": 17
+};
+
+var resistencia_tipo = [
     //NOR  FIR  WAT  ELE  GRA  ICE  FIG  POI  GRO  FLY  PSY  BUG  ROC  GHO  DRA  DAR  STE  FAI < DEFENSE
     [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5, 1.0 ], // NOR
     [ 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0 ], // FIR
