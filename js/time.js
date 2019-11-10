@@ -1,4 +1,5 @@
 var times = data.times;
+var pokemonsData = data.pokemons;
 var pokemons = document.getElementsByClassName("pokemon");
 var contador = 0;
 
@@ -60,6 +61,8 @@ while (contador < pokemons.length) {
 
 function adicionar(e) {
     
+    openModal(e.getAttribute('idpokemon'));
+
     if (selectedPokemons.childElementCount < 6) {
         
         // removendo classe selected para não remover a cor de seleção
@@ -135,4 +138,34 @@ function editar(e) {
 function deletar(e) {
     
     teams.removeChild(e.parentNode.parentNode.parentNode);
+}
+
+function openModal(id) {
+    
+    divTipos.innerHTML = '';
+    modalPkmImg.src = `img/pokemons/${fixarCasas(Number(id))}.png`;
+
+    if (id <= 6) {
+        
+        id = parseInt(id) - 1;
+        modalPkmName.innerHTML = `${pokemonsData[id].nome} ~ ${fixarCasas(pokemonsData[id].id)}`
+    
+        for (var i = 0; i < pokemonsData[id].tipo.length; i++) {
+    
+            var etiqueta = document.createElement('span');
+            etiqueta.classList.add('type');
+            etiqueta.innerHTML = pokemonsData[id].tipo[i];
+            colorirTipo(etiqueta);
+    
+            divTipos.appendChild(etiqueta);
+        }
+    }
+
+
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    
+    modal.style.display = 'none';
 }
