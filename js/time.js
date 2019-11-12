@@ -1,7 +1,10 @@
 var times = data.times;
 var pokemonsData = data.pokemons;
+var movimentosData = data.movimentos;
 var pokemons = document.getElementsByClassName("pokemon");
 var contador = 0;
+
+var target;
 
 while (contador < times.length) {
 
@@ -49,7 +52,7 @@ contador = 0;
 
 while (contador < 151) {
 
-    availablePokemons.innerHTML += `<div class="pokemon" idpokemon="${++contador}" onclick="adicionar(this)">${fixarCasas(contador)}</div>`;
+    availablePokemons.innerHTML += `<div class="pokemon" idpokemon="${++contador}" onclick="openModal(this)">${fixarCasas(contador)}</div>`;
 }
 
 contador = 0;
@@ -59,9 +62,9 @@ while (contador < pokemons.length) {
     pokemons[contador++].style.backgroundImage = `url("img/pokemons/${fixarCasas(contador)}.png")`;
 }
 
-function adicionar(e) {
-    
-    openModal(e.getAttribute('idpokemon'));
+function adicionar() {
+
+    var e = target;
 
     if (selectedPokemons.childElementCount < 6) {
         
@@ -76,6 +79,8 @@ function adicionar(e) {
 
         // adicionando classe selected novamente para o pokémon
         e.classList.add('selected');
+
+        closeModal();
     }
 }
 
@@ -140,13 +145,19 @@ function deletar(e) {
     teams.removeChild(e.parentNode.parentNode.parentNode);
 }
 
-function openModal(id) {
+function openModal(e) {
     
-    divTipos.innerHTML = '';
+    target = e;
+    
+    var id = e.getAttribute('idpokemon');
     modalPkmImg.src = `img/pokemons/${fixarCasas(Number(id))}.png`;
 
     if (id <= 6) {
+
+        divTipos.innerHTML = '';
+        divMovimentos.innerHTML = '';
         
+        pkm_id.innerHTML = id;
         id = parseInt(id) - 1;
         modalPkmName.innerHTML = `${pokemonsData[id].nome} ~ ${fixarCasas(pokemonsData[id].id)}`
     
@@ -159,6 +170,27 @@ function openModal(id) {
     
             divTipos.appendChild(etiqueta);
         }
+
+        for (var i = 0; i < pokemonsData[id].movimentos.length; i++) {
+
+            var movimento = document.createElement('span');
+            movimento.classList.add('move');
+            movimento.innerHTML = movimentosData[pokemonsData[id].movimentos[i] - 1].nome;
+    
+            divMovimentos.appendChild(movimento);
+
+            if (i == 1) {
+                
+                divMovimentos.innerHTML += '<br>';
+            }
+        }
+
+        pkm_hp.innerHTML = pokemonsData[id].hp;
+        pkm_ataque.innerHTML = pokemonsData[id].ataque;
+        pkm_defesa.innerHTML = pokemonsData[id].defesa;
+        pkm_spAtk.innerHTML = pokemonsData[id].ataqueEsp;
+        pkm_spDef.innerHTML = pokemonsData[id].defesaEsp;
+        pkm_velocidade.innerHTML = pokemonsData[id].velocidade;
     }
 
 

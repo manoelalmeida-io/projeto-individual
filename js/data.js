@@ -9,7 +9,8 @@ var data = {
             "defesa": 49,
             "ataqueEsp": 65,
             "defesaEsp": 65,
-            "velocidade": 45
+            "velocidade": 45,
+            "movimentos": [ 1, 2, 3, 2 ]
         },
         {
             "id": 2,
@@ -20,7 +21,8 @@ var data = {
             "defesa": 63,
             "ataqueEsp": 80,
             "defesaEsp": 80,
-            "velocidade": 60
+            "velocidade": 60,
+            "movimentos": [ 1, 2, 3, 2 ]
         },
         {
             "id": 3,
@@ -31,7 +33,8 @@ var data = {
             "defesa": 83,
             "ataqueEsp": 100,
             "defesaEsp": 100,
-            "velocidade": 80
+            "velocidade": 80,
+            "movimentos": [ 1, 2, 3, 2 ]
         },
         {
             "id": 4,
@@ -42,7 +45,8 @@ var data = {
             "defesa": 43,
             "ataqueEsp": 60,
             "defesaEsp": 50,
-            "velocidade": 65
+            "velocidade": 65,
+            "movimentos": [ 1, 2, 3, 2 ]
         },
         {
             "id": 5,
@@ -53,7 +57,8 @@ var data = {
             "defesa": 58,
             "ataqueEsp": 80,
             "defesaEsp": 65,
-            "velocidade": 80
+            "velocidade": 80,
+            "movimentos": [ 1, 2, 3, 2 ]
         },
         {
             "id": 6,
@@ -64,7 +69,8 @@ var data = {
             "defesa": 78,
             "ataqueEsp": 109,
             "defesaEsp": 85,
-            "velocidade": 100
+            "velocidade": 100,
+            "movimentos": [ 1, 2, 3, 2 ]
         }
     ],
     "movimentos": [
