@@ -7,7 +7,8 @@ create table tbusuario (
 	idusuario int primary key auto_increment,
     nome varchar(40),
     email varchar(50),
-    senha varchar(50)
+    senha varchar(50),
+    unique (email)
 );
 
 create table tbpokemon (
