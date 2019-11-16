@@ -8,11 +8,11 @@ module.exports = {
     storage: ":memory:"
   },
   production: {
-    username: 'userblindmarket',
-    password: '#Gfgrupo9',
-    database: 'bdblindmarket',
-    host: 'srvblindmarket.database.windows.net',
-    dialect: 'mssql',
+    username: 'root',
+    password: '1234',
+    database: 'pokemon',
+    host: 'localhost',
+    dialect: 'mysql',
     xuse_env_variable: 'DATABASE_URL',
     dialectOptions: {
       options: {
