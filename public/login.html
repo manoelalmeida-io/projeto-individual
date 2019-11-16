@@ -35,18 +35,19 @@
                     <h2>Pokéstop</h2>
                 </div>
                 <h1 class="form-title">Cadastre-se</h1>
-                <form action="" class="form">
+                <form id="form_cadastro" class="form" method="POST" onsubmit="validarCadastro(event)">
                     <label for="">Nome</label>
-                    <input class="input text" type="text" placeholder="Nome" required><br><br>
+                    <input id="cadastroNome" name="cadastroNome" class="input text" type="text" placeholder="Nome do usuário" required><br><br>
                     <label for="">Email</label>
-                    <input class="input text" type="text" placeholder="Usuário" required><br><br>
+                    <input id="cadastroEmail" name="cadastroEmail" class="input text" type="text" placeholder="Email do usuário" required><br><br>
                     <label for="">Senha</label>
-                    <input class="input text" type="password" placeholder="Senha" required><br><br>
+                    <input id="cadastroSenha" name="cadastroSenha" class="input text" type="password" placeholder="Senha" required><br><br>
                     Já possui uma conta? <a class="link" href="#login" onclick="login()">Fazer login</a>
                     <div class="button-container">
                         <button class="input button">Cadastrar-se</button>
                     </div>
                 </form>
+                <div id="verMensagemCadastro"></div>
             </div>
         </div>
     </div>

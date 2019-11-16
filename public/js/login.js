@@ -39,3 +39,60 @@ function entrar() {
         alert('Usuário ou senha incorretos');
     }
 }
+
+function validarCadastro() {
+    
+    var nome = cadastroNome.value;
+    var email = cadastroEmail.value;
+    var senha = cadastroSenha.value;
+
+    event.preventDefault();
+
+    if (nome == '') {
+        return;
+    }
+    else if (email == '') {
+        return;
+    }
+    else if (senha == '') {
+        return;
+    }
+    else {
+        cadastrar();
+    }
+}
+
+function cadastrar() {
+    
+    var formCadastro = new URLSearchParams(new FormData(form_cadastro));
+
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        body: formCadastro
+    }).then(resposta => {
+
+        if (resposta.ok) {
+            resposta.json().then(json => {
+
+                sessionStorage.nome_usuario_meuapp = json.nome;
+                sessionStorage.email_usuario_meuapp = json.email;
+                sessionStorage.senha_usuario_meuapp = json.senha;
+
+                window.location.href = 'login.html';
+            });
+
+        } else {
+
+            console.log('Erro ao Cadastrar!');
+
+            error2.style.display = "block"
+
+            response.text().then(texto => {
+                console.error(texto);
+                finalizar_aguardar(texto);
+            });
+        }
+    });
+
+    return false;
+}

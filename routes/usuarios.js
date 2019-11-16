@@ -41,10 +41,9 @@ router.post('/cadastrar', function (req, res, next) {
 	console.log('Criando um usuário');
 
 	Usuario.create({
-		nome: req.body.cadastro_nome,
-		login: req.body.cadastro_login,
-		email: req.body.cadastro_email,
-		senha: req.body.cadastro_senha
+		nome: req.body.cadastroNome,
+		email: req.body.cadastroEmail,
+		senha: req.body.cadastroSenha
 	}).then(resultado => {
 		console.log(`Registro criado: ${resultado}`)
 		res.send(resultado);
