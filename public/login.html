@@ -13,24 +13,25 @@
     <div class="container">
         <div class="form-container">
             <div id="div_login">
-                <div class="logo">
+                <div class="logo" onclick="inicio()">
                     <img src="img/icons/logo.png" alt="logo">
                     <h2>Pokéstop</h2>
                 </div>
                 <h1 class="form-title">Entrar</h1>
-                <form action="" class="form">
+                <form id="form_login" class="form" onsubmit="return entrar()">
                     <label for="">Email</label>
-                    <input id="login_email" class="input text" type="text" placeholder="Usuário" required><br><br>
+                    <input id="login_email" name="login_email" class="input text" type="text" placeholder="Usuário" required><br><br>
                     <label for="">Senha</label>
-                    <input id="login_senha" class="input text" type="password" placeholder="Senha" required><br><br>
+                    <input id="login_senha" name="login_senha" class="input text" type="password" placeholder="Senha" required><br><br>
                     Não possui uma conta? <a class="link" href="#cadastro" onclick="cadastro()">Cadastre-se</a>
                     <div class="button-container">
                         <button type="button" class="input button" onclick="entrar()">Entrar</button>
                     </div>
+                    <div id="ver_erro"></div>
                 </form>
             </div>
             <div id="div_cadastro">
-                <div class="logo">
+                <div class="logo" onclick="inicio()">
                     <img src="img/icons/logo.png" alt="logo">
                     <h2>Pokéstop</h2>
                 </div>

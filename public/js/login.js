@@ -31,13 +31,36 @@ function login() {
 
 function entrar() {
 
-    if (login_email.value == data.usuarios[0].email && login_senha.value == data.usuarios[0].senha) {
-        
-        window.location.href = 'index.html';
-    }
-    else {
-        alert('Usuário ou senha incorretos');
-    }
+    var formLogin = new URLSearchParams(new FormData(form_login));
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        body: formLogin
+    }).then(resposta => {
+
+        if (resposta.ok) {
+
+            resposta.json().then(json => {
+
+                sessionStorage.email_usuario_meuapp = json.email;
+                sessionStorage.nome_usuario_meuapp = json.nome;
+
+                window.location.href = 'index.html';
+            });
+
+        } else {
+
+            console.log('Erro de login!');
+
+            ver_erro.innerHTML = "Erro ao fazer login"
+
+            response.text().then(texto => {
+                console.error(texto);
+                finalizar_aguardar(texto);
+            });
+        }
+    });
+
+    return false;
 }
 
 function validarCadastro() {
@@ -78,7 +101,7 @@ function cadastrar() {
                 sessionStorage.email_usuario_meuapp = json.email;
                 sessionStorage.senha_usuario_meuapp = json.senha;
 
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             });
 
         } else {
@@ -95,4 +118,9 @@ function cadastrar() {
     });
 
     return false;
+}
+
+function inicio() {
+    
+    window.location = 'index.html';
 }

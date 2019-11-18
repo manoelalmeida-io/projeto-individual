@@ -125,6 +125,10 @@ body {
     cursor: pointer;
 }
 
+#session_name {
+    text-align: center;
+}
+
 @keyframes roll {
     0% {
         transform: translateX(0px) rotate(0deg);
