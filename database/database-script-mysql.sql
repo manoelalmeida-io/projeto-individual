@@ -66,5 +66,3 @@ create table tbpokemon_movimento (
     foreign key (fkmovimento) references tbmovimento (idmovimento),
     primary key (fkpokemon, fkmovimento)
 );
-
-alter table tbtime add fkusuario int, add foreign key (fkusuario) references tbusuario (idusuario);
