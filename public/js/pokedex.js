@@ -1,35 +1,52 @@
 var pokemons = data.pokemons;
 var contador = 0;
 
-while (contador < pokemons.length) {
-    
-    var id = pokemons[contador].id;
-    var nome = pokemons[contador].nome;
-    var tipo = pokemons[contador].tipo;
-    var hp = pokemons[contador].hp;
-    var atk = pokemons[contador].ataque;
-    var def = pokemons[contador].defesa;
-    var spAtk = pokemons[contador].ataqueEsp;
-    var spDef = pokemons[contador].defesaEsp;
-    var vel = pokemons[contador].velocidade;
-    var total = hp + atk + def + spAtk + spDef + vel; 
+fetch(`/pokemons`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
 
-    var row = '<tr>';
-    row += `<td class="id"><img src="img/pokemons/${fixarCasas(id)}.png">${fixarCasas(id)}</td>`;
-    row += `<td>${nome}</td>`;
-    row += `<td><span class="type">${tipo[0]}</span><span class="type">${tipo[1]}</span></td>`;
-    row += `<td><b>${total}</b></td>`;
-    row += `<td>${hp}</td>`;
-    row += `<td>${atk}</td>`;
-    row += `<td>${def}</td>`;
-    row += `<td>${spAtk}</td>`;
-    row += `<td>${spDef}</td>`;
-    row += `<td>${vel}</td>`;
-    row += `<tr>`;
+            for (i = 0; i < resposta.length; i++) {
+                var registro = resposta[i];
+            
+                // aqui, após 'registro.' use os nomes 
+                // dos atributos que vem no JSON 
+                // que gerou na consulta ao banco de dados
 
-    pokemonTable.innerHTML += row;
-    contador++;
-}
+                var id = registro.idpokemon;
+                var nome = registro.nome;
+                //var tipo = registro.tipo;
+                var hp = registro.hp;
+                var atk = registro.ataque;
+                var def = registro.defesa;
+                var spAtk = registro.ataqueesp;
+                var spDef = registro.defesaesp;
+                var vel = registro.velocidade;
+                var total = hp + atk + def + spAtk + spDef + vel; 
+
+                var row = '<tr>';
+                row += `<td class="id"><img src="img/pokemons/${fixarCasas(id)}.png">${fixarCasas(id)}</td>`;
+                row += `<td>${nome}</td>`;
+                row += `<td></td>`;
+                //row += `<td><span class="type">${tipo[0]}</span><span class="type">${tipo[1]}</span></td>`;
+                row += `<td><b>${total}</b></td>`;
+                row += `<td>${hp}</td>`;
+                row += `<td>${atk}</td>`;
+                row += `<td>${def}</td>`;
+                row += `<td>${spAtk}</td>`;
+                row += `<td>${spDef}</td>`;
+                row += `<td>${vel}</td>`;
+                row += `<tr>`;
+
+                pokemonTable.innerHTML += row;
+            }
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+})
+.catch(function (error) {
+    console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
+});
 
 var etiquetasTipo = document.getElementsByClassName("type");
 contador = 0;
