@@ -1,0 +1,19 @@
+insert into tbtipo values
+	(null, 'Normal'), -- 1 
+    (null, 'Fogo'), -- 2
+    (null, 'Água'), -- 3
+    (null, 'Elétrico'), -- 4
+    (null, 'Planta'), -- 5
+    (null, 'Gelo'), -- 6
+    (null, 'Lutador'), -- 7
+    (null, 'Veneno'), -- 8
+    (null, 'Terrestre'), -- 9
+    (null, 'Voador'), -- 10
+    (null, 'Psíquico'), -- 11
+    (null, 'Inseto'), -- 12
+    (null, 'Pedra'), -- 13
+    (null, 'Fantasma'), -- 14
+    (null, 'Dragão'), -- 15
+    (null, 'Escuridão'), -- 16
+    (null, 'Metálico'), -- 17
+    (null, 'Fada'); -- 18
