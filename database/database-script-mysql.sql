@@ -37,7 +37,8 @@ create table tbmovimento (
 
 create table tbtipo (
 	idtipo int primary key auto_increment,
-    nome varchar(40)
+    nome varchar(40),
+    cor char(7)
 );
 
 -- construindo as relações --
