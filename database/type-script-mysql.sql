@@ -17,3 +17,8 @@ insert into tbtipo values
     (null, 'Escuridão', '#707070'), -- 16
     (null, 'Metálico', '#7B8E8A'), -- 17
     (null, 'Fada', '#F87EA7'); -- 18
+    
+insert into tbcategoria values
+	(null, 'Físico'), -- 1
+    (null, 'Especial'), -- 2
+    (null, 'Status') -- 3

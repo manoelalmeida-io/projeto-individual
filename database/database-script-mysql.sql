@@ -27,18 +27,28 @@ create table tbtime (
     nome varchar(40)
 );
 
-create table tbmovimento (
-	idmovimento int primary key auto_increment,
-    nome varchar(40),
-    poder int,
-    categoria int,
-    precisao int
-);
-
 create table tbtipo (
 	idtipo int primary key auto_increment,
     nome varchar(40),
     cor char(7)
+);
+
+create table tbcategoria (
+	idcategoria int primary key auto_increment,
+    nome varchar(20)
+);
+
+create table tbmovimento (
+	idmovimento int primary key auto_increment,
+    nome varchar(40),
+    fktipo int,
+    fkcategoria int,
+    poder int,
+    precisao int,
+    pp int,
+    efeito varchar(255),
+    foreign key (fktipo) references tbtipo(idtipo),
+    foreign key (fkcategoria) references tbcategoria(idcategoria)
 );
 
 -- construindo as relações --
