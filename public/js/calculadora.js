@@ -1,30 +1,170 @@
-var pokemons = data.pokemons;
-var movimentos = data.movimentos;
+var pokemons = [];
+var movimentos = [];
 
-var contador = 0;
+var finalizado_pokemons = false;
+var finalizado_movimentos = false;
 
-while (contador < pokemons.length) {
-
-    var pokemon = pokemons[contador];
-    var item = `<option value="${pokemon.id}">${pokemon.nome}</option>`;
-
-    attacker.innerHTML += item;
-    defender.innerHTML += item;
-
-    contador++;
+function load() {
+    
+    consultaBanco();
+    atualizarDados();
 }
 
-contador = 0;
+function atualizarDados() {
+    
+    var finalizado = finalizado_pokemons && finalizado_movimentos; 
 
-while (contador < movimentos.length) {
+    if (!finalizado) {
+        
+        setTimeout(atualizarDados, 1000);
+    }
+    else {
 
-    var movimento = movimentos[contador];
-    var item = `<option value="${movimento.id}">${movimento.nome}</option>`;
-
-    move.innerHTML += item;
-
-    contador++;
+        preencherCombo();
+    }
 }
+
+function consultaBanco() {
+
+    fetch(`/pokemons`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                for (i = 0; i < resposta.length; i++) {
+                    var registro = resposta[i];
+
+                    var id = registro.idpokemon;
+                    var nome = registro.nome;
+                    var hp = registro.hp;
+                    var atk = registro.ataque;
+                    var def = registro.defesa;
+                    var spAtk = registro.ataqueesp;
+                    var spDef = registro.defesaesp;
+                    var vel = registro.velocidade;
+                    var total = hp + atk + def + spAtk + spDef + vel;
+
+                    pokemons.push(
+                        {
+                            "idpokemon": id,
+                            "nome": nome,
+                            "hp": hp,
+                            "atk": atk,
+                            "def": def,
+                            "spAtk": spAtk,
+                            "spDef": spDef,
+                            "vel": vel,
+                            "tipo": [],
+                            "total": total
+                        }
+                    );
+
+                    fetch(`/tipos/${id}`, { cache: 'no-store' }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (resposta) {
+            
+                                //var tipos = document.getElementsByName('tipo');
+            
+                                for (let c = 0; c < resposta.length; c++) {
+                                    var registro = resposta[c];
+            
+                                    var found = pokemons.find(element => {
+                                        return element.idpokemon == registro.idpokemon;
+                                    });
+            
+                                    found.tipo.push(
+                                        {
+                                            "idtipo": registro.idtipo,
+                                            "nome": registro.nome,
+                                            "cor": registro.cor
+                                        }
+                                    );
+                                }
+
+                                if (id == 151) {
+                                    
+                                    finalizado_pokemons = true;
+                                }
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
+                    });
+                }
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
+    });
+
+    fetch(`/movimentos/completo`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                for (i = 0; i < resposta.length; i++) {
+                    var registro = resposta[i];
+
+                    var id = registro.idmovimento;
+                    var nome = registro.nome;
+                    var tipo = registro.tipo;
+                    var categoria = registro.categoria;
+                    var poder = registro.poder == null ? '-' : registro.poder;
+                    var precisao = registro.precisao == null ? '-' : registro.precisao;
+                    var pp = registro.pp == null ? '-' : registro.pp;
+                    var efeito = registro.efeito;
+                    var cor = registro.cor;
+
+                    movimentos.push(
+                        {
+                            "idmovimento": id,
+                            "nome": nome,
+                            "tipo": tipo,
+                            "categoria": categoria,
+                            "poder": poder,
+                            "precisao": precisao,
+                            "pp": pp,
+                            "efeito": efeito,
+                            "cor": cor
+                        }
+                    );
+                }
+
+                finalizado_movimentos = true;
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
+    });
+}
+
+function preencherCombo() {
+    
+    for (var i = 0; i < pokemons.length; i++) {
+    
+        var pokemon = pokemons[i];
+        var item = `<option value="${pokemon.idpokemon}">${pokemon.nome}</option>`;
+    
+        attacker.innerHTML += item;
+        defender.innerHTML += item;
+    }
+    
+    for (var i = 0; i < pokemons.length; i++) {
+    
+        var movimento = movimentos[i];
+        var item = `<option value="${movimento.idmovimento}">${movimento.nome}</option>`;
+    
+        move.innerHTML += item;
+    }
+}
+
 
 function trocarPokemon(e) {
 
@@ -33,57 +173,65 @@ function trocarPokemon(e) {
 
     if (e.id == 'attacker') {
 
-        pk1_id.innerHTML = pokemon.id;
+        pk1_id.innerHTML = pokemon.idpokemon;
         pk1_nome.innerHTML = pokemon.nome;
-        pk1_tipo.innerHTML = pokemon.tipo;
+        pk1_tipo.innerHTML = `${pokemon.tipo[0].nome}${pokemon.tipo[1] != undefined ? `, ${pokemon.tipo[1].nome}` : ''}`;
         pk1_hp.innerHTML = pokemon.hp;
-        pk1_atk.innerHTML = pokemon.ataque;
-        pk1_def.innerHTML = pokemon.defesa;
-        pk1_spAtk.innerHTML = pokemon.ataqueEsp;
-        pk1_spDef.innerHTML = pokemon.defesaEsp;
-        pk1_velocidade.innerHTML = pokemon.velocidade;
+        pk1_atk.innerHTML = pokemon.atk;
+        pk1_def.innerHTML = pokemon.def;
+        pk1_spAtk.innerHTML = pokemon.spAtk;
+        pk1_spDef.innerHTML = pokemon.spDef;
+        pk1_velocidade.innerHTML = pokemon.vel;
 
-        pokemon1_img.src = `img/pokemons/${fixarCasas(pokemon.id)}.png`;
+        pokemon1_img.src = `img/pokemons/${fixarCasas(pokemon.idpokemon)}.png`;
     }
     else {
 
-        pk2_id.innerHTML = pokemon.id;
+        pk2_id.innerHTML = pokemon.idpokemon;
         pk2_nome.innerHTML = pokemon.nome;
-        pk2_tipo.innerHTML = pokemon.tipo;
+        pk2_tipo.innerHTML = `${pokemon.tipo[0].nome}${pokemon.tipo[1] != undefined ? `, ${pokemon.tipo[1].nome}` : ''}`;
         pk2_hp.innerHTML = pokemon.hp;
-        pk2_atk.innerHTML = pokemon.ataque;
-        pk2_def.innerHTML = pokemon.defesa;
-        pk2_spAtk.innerHTML = pokemon.ataqueEsp;
-        pk2_spDef.innerHTML = pokemon.defesaEsp;
-        pk2_velocidade.innerHTML = pokemon.velocidade;
+        pk2_atk.innerHTML = pokemon.atk;
+        pk2_def.innerHTML = pokemon.def;
+        pk2_spAtk.innerHTML = pokemon.spAtk;
+        pk2_spDef.innerHTML = pokemon.spDef;
+        pk2_velocidade.innerHTML = pokemon.vel;
 
-        pokemon2_img.src = `img/pokemons/${fixarCasas(pokemon.id)}.png`;
+        pokemon2_img.src = `img/pokemons/${fixarCasas(pokemon.idpokemon)}.png`;
         hp.style.width = '300px';
     }
 }
 
 function ataque() {
 
-    var movimento = movimentos[Number(move.value) - 1];
-    var atacante = pokemons[Number(attacker.value) - 1];
-    var defensor = pokemons[Number(defender.value) - 1];
+    var movimento = movimentos.find(element => {
+        return element.idmovimento == move.value;
+    });
 
-    var lv = 100;
+    var atacante = pokemons.find(element => {
+        return element.idpokemon == attacker.value;
+    });
+
+    var defensor = pokemons.find(element => {
+        return element.idpokemon == defender.value;
+    });
+
+    var lv = 1;
 
     if (movimento.categoria == 'Físico') {
 
-        var ataque = atacante.ataque;
-        var defesa = defensor.defesa;
+        var ataque = atacante.atk;
+        var defesa = defensor.def;
     }
     else {
 
-        var ataque = atacante.ataqueEsp;
-        var defesa = defensor.defesaEsp;
+        var ataque = atacante.spAtk;
+        var defesa = defensor.spDef;
     }
 
     var poder = movimento.poder;
 
-    if (movimento.tipo == atacante.tipo[0] || movimento.tipo == atacante.tipo[1]) {
+    if (movimento.tipo == atacante.tipo[0].nome || movimento.tipo == atacante.tipo[1].nome) {
         
         var STAB = 1.5;
     }
@@ -101,25 +249,25 @@ function ataque() {
 
     for (var i = 0; i < defensor.tipo.length; i++) {
 
-        multiplicador *= resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[i]]];
+        multiplicador *= resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[i].nome]];
     }
 
     dano *= multiplicador;
 
     efetividade.innerHTML = '';
 
-    if (resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[0]]] > 1) {
+    if (multiplicador > 1) {
         
         efetividade.innerHTML = 'É super efetivo*';
     }
 
-    if (resistencia_tipo[tipos[movimento.tipo]][tipos[defensor.tipo[0]]] < 1) {
+    if (multiplicador < 1) {
         
         efetividade.innerHTML = 'Não é muito efetivo*';
     }
 
     // valor correnspondete ao dano na barra de hp
-    var porcentagemDano = dano * 100 / pokemon.hp;
+    var porcentagemDano = dano * 100 / defensor.hp;
     var danoBarra = 300 - (300 * porcentagemDano / 100);
 
     if (danoBarra < 0) {
@@ -129,3 +277,5 @@ function ataque() {
 
     hp.style.width = `${danoBarra}px`;
 }
+
+window.onload = load();
