@@ -97,11 +97,37 @@ function cadastrar() {
         if (resposta.ok) {
             resposta.json().then(json => {
 
-                sessionStorage.nome_usuario_meuapp = json.nome;
+                /*sessionStorage.nome_usuario_meuapp = json.nome;
                 sessionStorage.email_usuario_meuapp = json.email;
-                sessionStorage.senha_usuario_meuapp = json.senha;
+                sessionStorage.senha_usuario_meuapp = json.senha;*/
 
-                window.location.href = 'index.html';
+                fetch("/usuarios/autenticar", {
+                    method: "POST",
+                    body: formCadastro
+                }).then(resposta => {
+            
+                    if (resposta.ok) {
+            
+                        resposta.json().then(json => {
+            
+                            sessionStorage.email_usuario_meuapp = json.email;
+                            sessionStorage.nome_usuario_meuapp = json.nome;
+            
+                            window.location.href = 'index.html';
+                        });
+            
+                    } else {
+            
+                        console.log('Erro de login!');
+            
+                        ver_erro.innerHTML = "Erro ao fazer login"
+            
+                        response.text().then(texto => {
+                            console.error(texto);
+                            finalizar_aguardar(texto);
+                        });
+                    }
+                });
             });
 
         } else {
