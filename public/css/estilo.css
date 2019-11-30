@@ -113,6 +113,14 @@ body {
     outline: none;
 }
 
+.type {
+    color: white;
+    background-color: cornflowerblue;
+    margin-right: 4px;
+    padding: 4px 8px;
+    border-radius: 16px;
+}
+
 #logo {
     transition-duration: 250ms;
     animation-duration: 1.5s;

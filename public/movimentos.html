@@ -26,8 +26,8 @@
                         <span class="navbar-link"><img src="img/icons/account.png" alt="logo" onclick="showProfile()"></span>
                         <div id="popup" class="popup-content">
                             <img src="img/icons/account.png" alt="">
-                            <span>Você ainda não se conectou</span>
-                            <div>
+                            <span id="session_name">Você ainda não se conectou</span>
+                            <div id="session_options">
                                 <a href="login.html#login">Inicie uma sessão </a>ou<a href="login.html#cadastro"> cadastre-se</a>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
             <h1 class="title">Movimentos</h1>
             <div class="filter">
                 <label for="">Buscar:</label>
-                <input class="input" type="text">
+                <input id="pesquisa" class="input" type="text" onkeyup="buscar()">
                 <label for="type">Tipo:</label>
                 <select id="type" class="combo">
                     <option value="">Todos</option>
@@ -67,15 +67,18 @@
             </div>
             <div class="list">
                 <table id="moveTable">
-                    <tr>
-                        <th>Nome</th>
-                        <th>Tipo</th>
-                        <th>Categoria</th>
-                        <th>Poder</th>
-                        <th>Precisão</th>
-                        <th>PP</th>
-                        <th>Efeito</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Categoria</th>
+                            <th>Poder</th>
+                            <th>Precisão</th>
+                            <th>PP</th>
+                            <th>Efeito</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabela"></tbody>
                 </table>
             </div>
         </div>
