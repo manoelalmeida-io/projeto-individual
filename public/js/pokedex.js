@@ -1,17 +1,32 @@
 var pokemons = [];
+var finalizado = false;
 
-async function load() {
+function load() {
+    
+    consultaBanco();
+    atualizarDados();
+}
 
-    await fetch(`/tipos`, { cache: 'no-store' }).then(function (response) {
+function atualizarDados() {
+    
+    if (!finalizado) {
+        
+        setTimeout(atualizarDados, 1000);
+    }
+    else {
+
+        preencherTabela(pokemons);
+    }
+}
+
+function consultaBanco() {
+
+    fetch(`/tipos`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
                 for (i = 0; i < resposta.length; i++) {
                     var registro = resposta[i];
-
-                    // aqui, após 'registro.' use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados
 
                     type.innerHTML += `<option value="${registro.idtipo}">${registro.nome}</option>`;
                 }
@@ -20,11 +35,11 @@ async function load() {
             console.error('Nenhum dado encontrado ou erro na API');
         }
     })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
-        });
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
+    });
 
-    await fetch(`/pokemons`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/pokemons`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
 
@@ -45,7 +60,7 @@ async function load() {
 
                     pokemons.push(
                         {
-                            "id": id,
+                            "idpokemon": id,
                             "nome": nome,
                             "hp": hp,
                             "atk": atk,
@@ -54,135 +69,118 @@ async function load() {
                             "spDef": spDef,
                             "vel": vel,
                             "tipo": [],
-                            "total": hp + atk + def + spAtk + spDef + vel
+                            "total": total
                         }
                     );
 
-                    /*var row = '<tr>';
-                    row += `<td class="id"><img src="img/pokemons/${fixarCasas(id)}.png">${fixarCasas(id)}</td>`;
-                    row += `<td>${nome}</td>`;
-                    row += `<td name="tipo"></td>`;
-                    row += `<td><b>${total}</b></td>`;
-                    row += `<td>${hp}</td>`;
-                    row += `<td>${atk}</td>`;
-                    row += `<td>${def}</td>`;
-                    row += `<td>${spAtk}</td>`;
-                    row += `<td>${spDef}</td>`;
-                    row += `<td>${vel}</td>`;
-                    row += `<tr>`;
-                    
-                    corpoTabela.innerHTML += row;*/
-                }
+                    fetch(`/tipos/${id}`, { cache: 'no-store' }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (resposta) {
+            
+                                //var tipos = document.getElementsByName('tipo');
+            
+                                for (let c = 0; c < resposta.length; c++) {
+                                    var registro = resposta[c];
+            
+                                    var found = pokemons.find(element => {
+                                        return element.idpokemon == registro.idpokemon;
+                                    });
+            
+                                    found.tipo.push(
+                                        {
+                                            "idtipo": registro.idtipo,
+                                            "nome": registro.nome,
+                                            "cor": registro.cor
+                                        }
+                                    );
+                                }
 
-                colocarTipos(resposta);
+                                if (id == 151) {
+                                    
+                                    finalizado = true;
+                                }
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
+                    });
+                }
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
         }
     })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
-        });
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
+    });
 }
 
-function colocarTipos(pokemons) {
-
-    for (let i = 0; i < pokemons.length; i++) {
-
-        let id = pokemons[i].idpokemon;
-
-        fetch(`/tipos/${id}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-
-                    //var tipos = document.getElementsByName('tipo');
-
-                    for (let c = 0; c < resposta.length; c++) {
-                        var registro = resposta[c];
-
-                        /*var tipo = document.createElement('span');
-                        tipo.classList.add('type');
-                        tipo.innerHTML = registro.nome;
-                        tipo.style.backgroundColor = registro.cor;
+async function preencherTabela(lista) {
     
-                        tipos[i].appendChild(tipo);*/
+    corpoTabela.innerHTML = '';
+    var tablerow = '';
 
-                        var found = pokemons.find(element => {
-                            return element.idpokemon == registro.idpokemon;
-                        });
+    for (var i = 0; i < lista.length; i++) {
 
-                        found.tipo.push(registro.nome);
+        var pokemon = lista[i];
 
-                    }
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
-            });
+        var id = pokemon.idpokemon;
+        var nome = pokemon.nome;
+        var hp = pokemon.hp;
+        var atk = pokemon.atk;
+        var def = pokemon.def;
+        var spAtk = pokemon.spAtk;
+        var spDef = pokemon.spDef;
+        var vel = pokemon.vel;
+        var total = pokemon.total;
+        var tipos = pokemon.tipo;
+
+        var row = '<tr>';
+        row += `<td class="id"><img src="img/pokemons/${fixarCasas(id)}.png">${fixarCasas(id)}</td>`;
+        row += `<td>${nome}</td>`;
+        row += `<td>`;
+
+        tipos.forEach(element => {
+            
+            row += `<span class="type" style="background-color: ${element.cor}">${element.nome}</span>`;
+        });
+
+        row += `</td>`;
+
+        row += `<td><b>${total}</b></td>`;
+        row += `<td>${hp}</td>`;
+        row += `<td>${atk}</td>`;
+        row += `<td>${def}</td>`;
+        row += `<td>${spAtk}</td>`;
+        row += `<td>${spDef}</td>`;
+        row += `<td>${vel}</td>`;
+        row += `<tr>`;
+        
+        tablerow += row;
     }
+
+    corpoTabela.innerHTML = tablerow;
 }
 
 function buscar() {
 
-    var textoPesquisa = pesquisa.value;
-    var url;
+    var textoPesquisa = pesquisa.value.toLowerCase();
 
-    if (textoPesquisa.length > 1) {
-
-        url = `/pokemons/buscar/${textoPesquisa}`;
-    }
-    else {
-
-        url = `/pokemons`;
+    if (textoPesquisa == '') {
+        
+        preencherTabela(pokemons);
+        return;
     }
 
-    fetch(url, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
+    var busca = pokemons.filter(registro => {
 
-                corpoTabela.innerHTML = '';
+        return registro.nome.toLowerCase().includes(textoPesquisa);
+    });
 
-                for (i = 0; i < resposta.length; i++) {
-                    var registro = resposta[i];
-
-                    var id = registro.idpokemon;
-                    var nome = registro.nome;
-                    var hp = registro.hp;
-                    var atk = registro.ataque;
-                    var def = registro.defesa;
-                    var spAtk = registro.ataqueesp;
-                    var spDef = registro.defesaesp;
-                    var vel = registro.velocidade;
-                    var total = hp + atk + def + spAtk + spDef + vel;
-
-                    var row = '<tr>';
-                    row += `<td class="id"><img src="img/pokemons/${fixarCasas(id)}.png">${fixarCasas(id)}</td>`;
-                    row += `<td>${nome}</td>`;
-                    row += `<td name="tipo"></td>`;
-                    row += `<td><b>${total}</b></td>`;
-                    row += `<td>${hp}</td>`;
-                    row += `<td>${atk}</td>`;
-                    row += `<td>${def}</td>`;
-                    row += `<td>${spAtk}</td>`;
-                    row += `<td>${spDef}</td>`;
-                    row += `<td>${vel}</td>`;
-                    row += `<tr>`;
-
-                    corpoTabela.innerHTML += row;
-                }
-
-                colocarTipos(resposta);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
-        });
+    preencherTabela(busca);
 }
 
 window.onload = load();

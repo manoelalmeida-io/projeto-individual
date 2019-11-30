@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
 		nome: {
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		cor: {
+			type: DataTypes.STRING,
+			allowNull: true
 		}
 	}, 
 	{

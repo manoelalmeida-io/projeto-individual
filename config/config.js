@@ -9,7 +9,7 @@ module.exports = {
   },
   production: {
     username: 'root',
-    password: 'bandtec',
+    password: '1234',
     database: 'pokemon',
     host: 'localhost',
     dialect: 'mysql',
