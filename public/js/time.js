@@ -1,9 +1,11 @@
 var times = data.times;
 var pokemonsData = [];
+var times = [];
 
 var pokemons = document.getElementsByClassName("pokemon");
 var contador = 0;
-var finalizado = false;
+var finalizado_pokemons = false;
+var finalizado_times = false;
 
 var target;
 
@@ -15,6 +17,8 @@ function load() {
 
 function atualizarDados() {
     
+    var finalizado = finalizado_pokemons && finalizado_times;
+
     if (!finalizado) {
         
         setTimeout(atualizarDados, 1000);
@@ -22,6 +26,7 @@ function atualizarDados() {
     else {
 
         preencherPokemons();
+        preencherTimes();
     }
 }
 
@@ -83,7 +88,7 @@ function consultaBanco() {
 
                                 if (id == 151) {
                                     
-                                    finalizado = true;
+                                    finalizado_pokemons = true;
                                 }
                             });
                         } else {
@@ -102,6 +107,92 @@ function consultaBanco() {
     .catch(function (error) {
         console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
     });
+
+    fetch(`/times/${sessionStorage.email_usuario_meuapp}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                var tamanho = resposta.length;
+
+                for (i = 0; i < resposta.length; i++) {
+                    var registro = resposta[i];
+
+                    times.push({
+                        "id": registro.idtime,
+                        "nome": registro.nome,
+                        "fkusuario": registro.fkusuario,
+                        "pokemons": []
+                    });
+
+                    fetch(`/times/pokemons/${registro.idtime}`, { cache: 'no-store' }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (resposta) {
+            
+                                for (let c = 0; c < resposta.length; c++) {
+                                    var registro = resposta[c];
+            
+                                    var found = times.find(element => {
+                                        return element.id == registro.fktime;
+                                    });
+            
+                                    found.pokemons.push(registro.fkpokemon);
+                                }
+
+                                if ((i + 1) >= tamanho) {
+                                    finalizado_times = true;
+                                }
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
+                    });
+                    
+                }
+
+                finalizado_pokemons = true;
+
+                if (resposta.length == 0) {
+                    
+                    finalizado_times = true;
+                }
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
+    });
+}
+
+function preencherTimes() {
+    
+    teams.innerHTML = '';
+
+    for (var i = 0; i < times.length; i++) {
+
+        var time = `<div class="team" timeid="${times[i].id}">`;
+        time += '<div class="team-pokemons">';
+
+        times[i].pokemons.forEach(element => {
+            
+            time += `<div style="background-image: url('img/pokemons/${fixarCasas(element)}.png')" idpoke="${element}" class="team-pokemon"></div>`;
+        });
+    
+        time += '</div>';
+        time += '<div class="team-info">';
+        time += times[i].nome;
+        time += '<div class="controls">'
+        time += '<img src="img/icons/edit.svg" onclick="editar(this)">';
+        time += '<img src="img/icons/delete.svg" onclick="deletar(this)">';
+        time += '</div></div></div>';
+        teams.innerHTML += time;
+    }
+
+    teams.innerHTML += '<div onclick="novo()" class="add-team"></div>';
 }
 
 function preencherPokemons() {
@@ -113,6 +204,7 @@ function preencherPokemons() {
     }
 }
 
+/*
 while (contador < times.length) {
 
     var posicaoPokemon = 0;
@@ -139,6 +231,7 @@ while (contador < times.length) {
     contador++;
 }
 
+
 contador = 0;
 
 var timePokemons = document.getElementsByClassName("team-pokemon");
@@ -153,7 +246,7 @@ while (contador < timePokemons.length) {
     contador++;
 }
 
-teams.innerHTML += '<div onclick="novo()" class="add-team"></div>';
+*/
 
 function adicionar() {
 

@@ -21,6 +21,32 @@ router.get('/', function (req, res, next) {
 	});
 });
 
+/* Recuperando os times do usuário */
+router.get('/:login', function (req, res, next) {
+
+    console.log(`Recuperando os times do usuário`);
+
+    let login = req.params.login;
+
+	const instrucaoSql = `select tbtime.* from tbtime
+                            inner join tbusuario on fkusuario = idusuario
+                            where email = '${login}'`;
+
+	sequelize.query(instrucaoSql, {
+        type: sequelize.QueryTypes.SELECT
+    })
+    .then(resultado => {
+
+        console.log(`Encontrados: ${resultado.length}`);
+        res.json(resultado);
+
+    }).catch(erro => {
+
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
+
 /* Recuperar todos os pokemons de times */
 router.get('/pokemons', function (req, res, next) {
 
@@ -36,6 +62,30 @@ router.get('/pokemons', function (req, res, next) {
 		console.error(erro);
 		res.status(500).send(erro.message);
 	});
+});
+
+/* Recuperar todos os pokemons de um time */
+router.get('/pokemons/:id', function (req, res, next) {
+
+    console.log('Recuperar todos os pokemons de um time');
+    
+	let id = req.params.id;
+
+	const instrucaoSql = `select * from tbtime_pokemon where fktime = ${id}`;
+
+	sequelize.query(instrucaoSql, {
+        type: sequelize.QueryTypes.SELECT
+    })
+    .then(resultado => {
+
+        console.log(`Encontrados: ${resultado.length}`);
+        res.json(resultado);
+
+    }).catch(erro => {
+
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
 });
 
 /* Cadastrar time */
