@@ -1,5 +1,5 @@
 var pokemons = [];
-var finalizado = false;
+var reload = true;
 
 function load() {
     
@@ -9,8 +9,10 @@ function load() {
 
 function atualizarDados() {
     
-    if (!finalizado) {
+    if (reload) {
         
+        reload = false;
+        preencherTabela(pokemons);
         setTimeout(atualizarDados, 1000);
     }
     else {
@@ -77,8 +79,6 @@ function consultaBanco() {
                         if (response.ok) {
                             response.json().then(function (resposta) {
             
-                                //var tipos = document.getElementsByName('tipo');
-            
                                 for (let c = 0; c < resposta.length; c++) {
                                     var registro = resposta[c];
             
@@ -95,10 +95,7 @@ function consultaBanco() {
                                     );
                                 }
 
-                                if (id == 151) {
-                                    
-                                    finalizado = true;
-                                }
+                                reload = true;
                             });
                         } else {
                             console.error('Nenhum dado encontrado ou erro na API');
@@ -107,6 +104,8 @@ function consultaBanco() {
                     .catch(function (error) {
                         console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
                     });
+
+                    reload = true;
                 }
             });
         } else {

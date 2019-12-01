@@ -4,8 +4,7 @@ var times = [];
 
 var pokemons = document.getElementsByClassName("pokemon");
 var contador = 0;
-var finalizado_pokemons = false;
-var finalizado_times = false;
+var reload = true;
 
 var target;
 
@@ -16,11 +15,12 @@ function load() {
 }
 
 function atualizarDados() {
-    
-    var finalizado = finalizado_pokemons && finalizado_times;
 
-    if (!finalizado) {
+    if (reload) {
         
+        reload = false;
+        preencherPokemons();
+        preencherTimes();
         setTimeout(atualizarDados, 1000);
     }
     else {
@@ -68,8 +68,6 @@ function consultaBanco() {
                         if (response.ok) {
                             response.json().then(function (resposta) {
             
-                                //var tipos = document.getElementsByName('tipo');
-            
                                 for (let c = 0; c < resposta.length; c++) {
                                     var registro = resposta[c];
             
@@ -86,10 +84,7 @@ function consultaBanco() {
                                     );
                                 }
 
-                                if (id == 151) {
-                                    
-                                    finalizado_pokemons = true;
-                                }
+                                reload = true;
                             });
                         } else {
                             console.error('Nenhum dado encontrado ou erro na API');
@@ -98,6 +93,8 @@ function consultaBanco() {
                     .catch(function (error) {
                         console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
                     });
+
+                    reload = true;
                 }
             });
         } else {
@@ -138,9 +135,7 @@ function consultaBanco() {
                                     found.pokemons.push(registro.fkpokemon);
                                 }
 
-                                if ((i + 1) >= tamanho) {
-                                    finalizado_times = true;
-                                }
+                                reload = true;
                             });
                         } else {
                             console.error('Nenhum dado encontrado ou erro na API');
@@ -152,12 +147,7 @@ function consultaBanco() {
                     
                 }
 
-                finalizado_pokemons = true;
-
-                if (resposta.length == 0) {
-                    
-                    finalizado_times = true;
-                }
+                reload = true;
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -170,7 +160,7 @@ function consultaBanco() {
 
 function preencherTimes() {
     
-    teams.innerHTML = '';
+    var todosTimes = '';
 
     for (var i = 0; i < times.length; i++) {
 
@@ -189,64 +179,24 @@ function preencherTimes() {
         time += '<img src="img/icons/edit.svg" onclick="editar(this)">';
         time += '<img src="img/icons/delete.svg" onclick="deletar(this)">';
         time += '</div></div></div>';
-        teams.innerHTML += time;
+        todosTimes += time;
     }
-
+    
+    teams.innerHTML = todosTimes;
     teams.innerHTML += '<div onclick="novo()" class="add-team"></div>';
 }
 
 function preencherPokemons() {
     
+    var itens = '';
+
     for (var i = 0; i < pokemonsData.length; i++) {
 
-        availablePokemons.innerHTML += `<div class="pokemon" idpokemon="${i + 1}" onclick="openModal(this)">${fixarCasas(i + 1)}</div>`;
-        pokemons[i].style.backgroundImage = `url("img/pokemons/${fixarCasas(i + 1)}.png")`;
-    }
-}
-
-/*
-while (contador < times.length) {
-
-    var posicaoPokemon = 0;
-    var numeroPokemons = times[contador].pokemons.length; 
-
-    var time = `<div class="team" timeid="${times[contador].id}">`;
-    time += '<div class="team-pokemons">';
-
-    while (posicaoPokemon < numeroPokemons) {
-        
-        time += `<div idpoke="${times[contador].pokemons[posicaoPokemon]}" class="team-pokemon"></div>`;
-        posicaoPokemon++;
+        itens += `<div style="background-image: url('img/pokemons/${fixarCasas(i + 1)}.png')" class="pokemon" idpokemon="${i + 1}" onclick="openModal(this)">${fixarCasas(i + 1)}</div>`;
     }
 
-    time += '</div>';
-    time += '<div class="team-info">';
-    time += times[contador].nome;
-    time += '<div class="controls">'
-    time += '<img src="img/icons/edit.svg" onclick="editar(this)">';
-    time += '<img src="img/icons/delete.svg" onclick="deletar(this)">';
-    time += '</div></div></div>';
-    teams.innerHTML += time;
-
-    contador++;
+    availablePokemons.innerHTML = itens;
 }
-
-
-contador = 0;
-
-var timePokemons = document.getElementsByClassName("team-pokemon");
-
-while (contador < timePokemons.length) {
-    
-    var pokemon = timePokemons[contador];
-
-    var id = pokemon.getAttribute('idpoke');
-    pokemon.style.backgroundImage = `url("img/pokemons/${fixarCasas(id)}.png")`;
-
-    contador++;
-}
-
-*/
 
 function adicionar() {
 
@@ -357,20 +307,6 @@ function openModal(e) {
 
         divTipos.appendChild(etiqueta);
     }
-
-    /*for (var i = 0; i < pokemonsData[id].movimentos.length; i++) {
-
-        var movimento = document.createElement('span');
-        movimento.classList.add('move');
-        movimento.innerHTML = movimentosData[pokemonsData[id].movimentos[i] - 1].nome;
-
-        divMovimentos.appendChild(movimento);
-
-        if (i == 1) {
-            
-            divMovimentos.innerHTML += '<br>';
-        }
-    }*/
 
     pkm_hp.innerHTML = selected.hp;
     pkm_ataque.innerHTML = selected.atk;

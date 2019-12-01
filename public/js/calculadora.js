@@ -1,8 +1,7 @@
 var pokemons = [];
 var movimentos = [];
 
-var finalizado_pokemons = false;
-var finalizado_movimentos = false;
+var reload = true;
 
 function load() {
     
@@ -11,11 +10,11 @@ function load() {
 }
 
 function atualizarDados() {
-    
-    var finalizado = finalizado_pokemons && finalizado_movimentos; 
 
-    if (!finalizado) {
+    if (reload) {
         
+        reload = false;
+        preencherCombo();
         setTimeout(atualizarDados, 1000);
     }
     else {
@@ -80,10 +79,7 @@ function consultaBanco() {
                                     );
                                 }
 
-                                if (id == 151) {
-                                    
-                                    finalizado_pokemons = true;
-                                }
+                                reload = true;
                             });
                         } else {
                             console.error('Nenhum dado encontrado ou erro na API');
@@ -93,6 +89,8 @@ function consultaBanco() {
                         console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
                     });
                 }
+
+                reload = true;
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -134,7 +132,7 @@ function consultaBanco() {
                     );
                 }
 
-                finalizado_movimentos = true;
+                reload = true;
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -147,22 +145,26 @@ function consultaBanco() {
 
 function preencherCombo() {
     
+    var pokemonOptions = '';
+    var movimentoOptions = '';
+
     for (var i = 0; i < pokemons.length; i++) {
     
         var pokemon = pokemons[i];
-        var item = `<option value="${pokemon.idpokemon}">${pokemon.nome}</option>`;
+        pokemonOptions += `<option value="${pokemon.idpokemon}">${pokemon.nome}</option>`;
     
-        attacker.innerHTML += item;
-        defender.innerHTML += item;
     }
+
+    attacker.innerHTML = pokemonOptions;
+    defender.innerHTML = pokemonOptions;
     
-    for (var i = 0; i < pokemons.length; i++) {
+    for (var i = 0; i < movimentos.length; i++) {
     
         var movimento = movimentos[i];
-        var item = `<option value="${movimento.idmovimento}">${movimento.nome}</option>`;
-    
-        move.innerHTML += item;
+        movimentoOptions += `<option value="${movimento.idmovimento}">${movimento.nome}</option>`;
     }
+    
+    move.innerHTML = movimentoOptions;
 }
 
 
