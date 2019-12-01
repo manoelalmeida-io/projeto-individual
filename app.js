@@ -10,6 +10,7 @@ var usuariosRouter = require('./routes/usuarios');
 var pokemonsRouter = require('./routes/pokemons');
 var tiposRouter = require('./routes/tipos');
 var movimentosRouter = require('./routes/movimentos');
+var timesRouter = require('./routes/times');
 
 var app = express();
 
@@ -24,5 +25,6 @@ app.use('/usuarios', usuariosRouter);
 app.use('/pokemons', pokemonsRouter);
 app.use('/tipos', tiposRouter);
 app.use('/movimentos', movimentosRouter);
+app.use('/times', timesRouter);
 
 module.exports = app;

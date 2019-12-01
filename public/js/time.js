@@ -1,10 +1,117 @@
 var times = data.times;
-var pokemonsData = data.pokemons;
-var movimentosData = data.movimentos;
+var pokemonsData = [];
+
 var pokemons = document.getElementsByClassName("pokemon");
 var contador = 0;
+var finalizado = false;
 
 var target;
+
+function load() {
+    
+    consultaBanco();
+    atualizarDados();
+}
+
+function atualizarDados() {
+    
+    if (!finalizado) {
+        
+        setTimeout(atualizarDados, 1000);
+    }
+    else {
+
+        preencherPokemons();
+    }
+}
+
+function consultaBanco() {
+    
+    fetch(`/pokemons`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                for (i = 0; i < resposta.length; i++) {
+                    var registro = resposta[i];
+
+                    var id = registro.idpokemon;
+                    var nome = registro.nome;
+                    var hp = registro.hp;
+                    var atk = registro.ataque;
+                    var def = registro.defesa;
+                    var spAtk = registro.ataqueesp;
+                    var spDef = registro.defesaesp;
+                    var vel = registro.velocidade;
+                    var total = hp + atk + def + spAtk + spDef + vel;
+
+                    pokemonsData.push(
+                        {
+                            "idpokemon": id,
+                            "nome": nome,
+                            "hp": hp,
+                            "atk": atk,
+                            "def": def,
+                            "spAtk": spAtk,
+                            "spDef": spDef,
+                            "vel": vel,
+                            "tipo": [],
+                            "total": total
+                        }
+                    );
+
+                    fetch(`/tipos/${id}`, { cache: 'no-store' }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (resposta) {
+            
+                                //var tipos = document.getElementsByName('tipo');
+            
+                                for (let c = 0; c < resposta.length; c++) {
+                                    var registro = resposta[c];
+            
+                                    var found = pokemonsData.find(element => {
+                                        return element.idpokemon == registro.idpokemon;
+                                    });
+            
+                                    found.tipo.push(
+                                        {
+                                            "idtipo": registro.idtipo,
+                                            "nome": registro.nome,
+                                            "cor": registro.cor
+                                        }
+                                    );
+                                }
+
+                                if (id == 151) {
+                                    
+                                    finalizado = true;
+                                }
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados dos tipos: ${error.message}`);
+                    });
+                }
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados dos Pokémons: ${error.message}`);
+    });
+}
+
+function preencherPokemons() {
+    
+    for (var i = 0; i < pokemonsData.length; i++) {
+
+        availablePokemons.innerHTML += `<div class="pokemon" idpokemon="${i + 1}" onclick="openModal(this)">${fixarCasas(i + 1)}</div>`;
+        pokemons[i].style.backgroundImage = `url("img/pokemons/${fixarCasas(i + 1)}.png")`;
+    }
+}
 
 while (contador < times.length) {
 
@@ -47,20 +154,6 @@ while (contador < timePokemons.length) {
 }
 
 teams.innerHTML += '<div onclick="novo()" class="add-team"></div>';
-
-contador = 0;
-
-while (contador < 151) {
-
-    availablePokemons.innerHTML += `<div class="pokemon" idpokemon="${++contador}" onclick="openModal(this)">${fixarCasas(contador)}</div>`;
-}
-
-contador = 0;
-
-while (contador < pokemons.length) {
-    
-    pokemons[contador++].style.backgroundImage = `url("img/pokemons/${fixarCasas(contador)}.png")`;
-}
 
 function adicionar() {
 
@@ -148,51 +241,50 @@ function deletar(e) {
 function openModal(e) {
     
     target = e;
-    
+
     var id = e.getAttribute('idpokemon');
     modalPkmImg.src = `img/pokemons/${fixarCasas(Number(id))}.png`;
 
-    if (id <= 6) {
+    var selected = pokemonsData.find(element => {
+        return element.idpokemon == id;
+    });
 
-        divTipos.innerHTML = '';
-        divMovimentos.innerHTML = '';
-        
-        pkm_id.innerHTML = id;
-        id = parseInt(id) - 1;
-        modalPkmName.innerHTML = `${pokemonsData[id].nome} ~ ${fixarCasas(pokemonsData[id].id)}`
+    divTipos.innerHTML = '';
+    divMovimentos.innerHTML = '';
     
-        for (var i = 0; i < pokemonsData[id].tipo.length; i++) {
-    
-            var etiqueta = document.createElement('span');
-            etiqueta.classList.add('type');
-            etiqueta.innerHTML = pokemonsData[id].tipo[i];
-            colorirTipo(etiqueta);
-    
-            divTipos.appendChild(etiqueta);
-        }
+    pkm_id.innerHTML = selected.idpokemon;
+    modalPkmName.innerHTML = `${selected.nome} ~ ${fixarCasas(selected.idpokemon)}`
 
-        for (var i = 0; i < pokemonsData[id].movimentos.length; i++) {
+    for (var i = 0; i < selected.tipo.length; i++) {
 
-            var movimento = document.createElement('span');
-            movimento.classList.add('move');
-            movimento.innerHTML = movimentosData[pokemonsData[id].movimentos[i] - 1].nome;
-    
-            divMovimentos.appendChild(movimento);
+        var etiqueta = document.createElement('span');
+        etiqueta.classList.add('type');
+        etiqueta.innerHTML = selected.tipo[i].nome;
+        colorirTipo(etiqueta);
 
-            if (i == 1) {
-                
-                divMovimentos.innerHTML += '<br>';
-            }
-        }
-
-        pkm_hp.innerHTML = pokemonsData[id].hp;
-        pkm_ataque.innerHTML = pokemonsData[id].ataque;
-        pkm_defesa.innerHTML = pokemonsData[id].defesa;
-        pkm_spAtk.innerHTML = pokemonsData[id].ataqueEsp;
-        pkm_spDef.innerHTML = pokemonsData[id].defesaEsp;
-        pkm_velocidade.innerHTML = pokemonsData[id].velocidade;
+        divTipos.appendChild(etiqueta);
     }
 
+    /*for (var i = 0; i < pokemonsData[id].movimentos.length; i++) {
+
+        var movimento = document.createElement('span');
+        movimento.classList.add('move');
+        movimento.innerHTML = movimentosData[pokemonsData[id].movimentos[i] - 1].nome;
+
+        divMovimentos.appendChild(movimento);
+
+        if (i == 1) {
+            
+            divMovimentos.innerHTML += '<br>';
+        }
+    }*/
+
+    pkm_hp.innerHTML = selected.hp;
+    pkm_ataque.innerHTML = selected.atk;
+    pkm_defesa.innerHTML = selected.def;
+    pkm_spAtk.innerHTML = selected.spAtk;
+    pkm_spDef.innerHTML = selected.spDef;
+    pkm_velocidade.innerHTML = selected.vel;
 
     modal.style.display = 'block';
 }
@@ -201,3 +293,52 @@ function closeModal() {
     
     modal.style.display = 'none';
 }
+
+function cadastrar() {
+    
+    var form = document.createElement('form');
+
+    var tNome = document.createElement('input');
+    tNome.name = 'nome';
+    tNome.value = nome.value;
+
+    for (var i = 0; i < selectedPokemons.childElementCount; i++) {
+
+        var pk = document.createElement('input');
+        pk.name = 'pokemons';
+        pk.value = selectedPokemons.childNodes[i].getAttribute('idpokemon');
+
+        form.appendChild(pk);
+    }
+
+    form.appendChild(tNome);
+
+    var formCadastro = new URLSearchParams(new FormData(form));
+
+    fetch(`/times/cadastrar/${sessionStorage.email_usuario_meuapp}`, {
+        method: "POST",
+        body: formCadastro
+    }).then(resposta => {
+
+        if (resposta.ok) {
+            resposta.json().then(json => {
+
+                console.log(json);
+                window.location.reload(false);
+            });
+
+        } else {
+
+            console.log('Erro ao Cadastrar!');
+
+            response.text().then(texto => {
+                console.error(texto);
+                finalizar_aguardar(texto);
+            });
+        }
+    });
+
+    return false;
+}
+
+window.onload = load();

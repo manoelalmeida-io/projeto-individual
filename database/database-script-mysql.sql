@@ -24,7 +24,9 @@ create table tbpokemon (
 
 create table tbtime (
 	idtime int primary key auto_increment,
-    nome varchar(40)
+    nome varchar(40),
+    fkusuario int,
+    foreign key (fkusuario) references tbusuario(idusuario)
 );
 
 create table tbtipo (

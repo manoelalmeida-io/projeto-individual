@@ -44,7 +44,6 @@ router.get('/:idpokemon', function (req, res, next) {
 
         console.error(erro);
         res.status(500).send(erro.message);
-
     });
 });
 
